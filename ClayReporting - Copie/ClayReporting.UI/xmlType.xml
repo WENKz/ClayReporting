@@ -1,0 +1,32 @@
+<datas date="06/01/2017">
+	<data timecode="0" lot="1124472503">
+		<offset>13</offset>
+		<pressure>759484274</pressure>
+		<layout>1796</layout>
+		<component>Yotis2</component>
+		<colorbound>Yellow</colorbound>
+		<quality>medium</quality>
+		<performance>High</performance>
+		<result>0</result>
+	</data>
+	<data timecode="0" lot="1124474444">
+		<offset>13</offset>
+		<pressure>759488888</pressure>
+		<layout>1796</layout>
+		<component>Yotis3</component>
+		<colorbound>Green</colorbound>
+		<quality>medium</quality>
+		<performance>low</performance>
+		<result>0</result>
+	</data>
+	<data timecode="0" lot="1124455555">
+		<offset>15</offset>
+		<pressure>759499999</pressure>
+		<layout>1798</layout>
+		<component>Yotis3</component>
+		<colorbound>Yellow</colorbound>
+		<quality>medium</quality>
+		<performance>medium</performance>
+		<result>0</result>
+	</data>
+</datas> 

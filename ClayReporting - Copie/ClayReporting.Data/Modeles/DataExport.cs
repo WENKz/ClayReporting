@@ -43,8 +43,6 @@ namespace ClayReporting.DataAcces.Modeles
             
         }
 
-        
-
         [NotMapped]
         [XmlAttribute("lot")]
         public int ValeurLot
