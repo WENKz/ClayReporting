@@ -65,7 +65,6 @@ namespace ClayReporting.UI.Controllers
 
             ViewData["list"] = list;
             return View();
-            return View();
         }
 
         public ActionResult About()
