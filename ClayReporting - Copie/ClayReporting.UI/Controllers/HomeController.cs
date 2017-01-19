@@ -14,9 +14,32 @@ namespace ClayReporting.UI.Controllers
     {
         public ActionResult Index()
         {
-            /*  Class1 c1 = new Class1();
-              c1.test();*/
+             Class1 c1 = new Class1();
+              c1.test();
 
+         
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Graph()
+        {
+            /*RapportMois rp = new RapportMois();
+            ViewBag.ListRapports = rp.Rapports;*/
+            // ViewBag.Message = "Graphique de production";
             var nvc = Request.Form;
             DateTime date = new DateTime();
             if (!string.IsNullOrEmpty(nvc["CompanyName"]))
@@ -64,29 +87,6 @@ namespace ClayReporting.UI.Controllers
 
 
             ViewData["list"] = list;
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Graph()
-        {
-            RapportMois rp = new RapportMois();
-            ViewBag.ListRapports = rp.Rapports;
-            ViewBag.Message = "Graphique de production";
-
             return View();
         }
     }
