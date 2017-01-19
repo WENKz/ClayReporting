@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClayReporting.Process
 {
-    class PageGraphique
+    public class PageGraphique
     {
         public Dictionary<int, Dictionary<string, dynamic>> ObtenirDonneesGraphique(DateTime debutPeriode, DateTime finPeriode) 
         {
@@ -26,13 +26,15 @@ namespace ClayReporting.Process
             int i = 0;
             rapports.ForEach(delegate(rapport rapportExp)
             {
-                Dictionary<string, dynamic> donnee = new Dictionary<string, dynamic>();
+                
                 rapportExp.data.ForEach(delegate(data data) 
                 {
+                    Dictionary<string, dynamic> donnee = new Dictionary<string, dynamic>();
                     donnee.Add("quality", valeurs[data.etat.libelle.ToLower()]);
                     donnee.Add("performance", valeurs[data.etat1.libelle.ToLower()]);
                     donnee.Add("couleur", data.couleur.libelle);
                     donnee.Add("composant", data.composant.libelle);
+                    donnee.Add("layout", data.layout);
                     donnees.Add(i, donnee);
                     i++;
                 });

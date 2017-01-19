@@ -15,8 +15,7 @@ namespace ClayReporting.Process
 
         public void test()
         {
-            PageGraphique pg = new PageGraphique();
-            pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
+            
 
             /*ClayReportingEntities Context = new ClayReportingEntities();
 
