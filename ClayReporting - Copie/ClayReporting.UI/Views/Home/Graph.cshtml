@@ -1,33 +1,53 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
-    int i = 0;
+    ViewBag.Title = "Graph";
+
 }
 
-<form method="post">
-    <fieldset>
-        <legend>Add Customer</legend>
-        <div>
-            <label for="CompanyName">Company Name:</label>
-            <input type="date" name="CompanyName" value="" />
+
+<div class="mdl-layout__tab-panel is-active" id="overview">
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card__supporting-text">
+                <h4>Rechercher par date</h4>
+                <div style="text-align:center">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="" for="from">From:</label>
+
+                        <input class="mdl-textfield__input" type="date" id="from">
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="" for="to">To:</label>
+
+                        <input class="mdl-textfield__input" type="date" id="to">
+                    </div>
+
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
+                </div>
+            </div>
         </div>
-        <input type="submit" />
-    </fieldset>
-</form>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<h2>Graphique Quality/Lot</h2>
-<div id="chart_div"></div>
 
-<h2>Graphique Quality/Component</h2>
+    </section>
 
-<div id="chart_div_qc"></div>
+</div>
 
-<h2>Graphique Performance/Layout</h2>
+<div style="max-width:60%; margin:auto">
+    <h2>Graphique Quality/Lot</h2>
 
-<div id="chart_div_pl"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div id="chart_div"></div>
 
-<h2>Graphique Nombre de lot/Color</h2>
+    <h2>Graphique Quality/Component</h2>
 
-<div id="chart_div_nc"></div>
+    <div id="chart_div_qc"></div>
+
+    <h2>Graphique Performance/Layout</h2>
+
+    <div id="chart_div_pl"></div>
+
+    <h2>Graphique Nombre de lot/Color</h2>
+
+    <div id="chart_div_nc"></div>
+</div>
 
 @ViewData["date"];
 <script>
