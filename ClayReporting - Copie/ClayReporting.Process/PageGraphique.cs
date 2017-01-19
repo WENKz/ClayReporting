@@ -35,6 +35,8 @@ namespace ClayReporting.Process
                     donnee.Add("couleur", data.couleur.libelle);
                     donnee.Add("composant", data.composant.libelle);
                     donnee.Add("layout", data.layout);
+                    donnee.Add("lot", data.lot);
+
                     donnees.Add(i, donnee);
                     i++;
                 });

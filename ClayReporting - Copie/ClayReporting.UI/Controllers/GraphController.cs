@@ -13,6 +13,7 @@ namespace ClayReporting.UI.Controllers
         {
             PageGraphique pg = new PageGraphique();
             Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
+            ViewData["list"] = test;
             return View();
         }
     }
