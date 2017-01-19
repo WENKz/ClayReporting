@@ -9,9 +9,9 @@ namespace ClayReporting.DataAcces.DAS
 {
     public class DARapport
     {
-        private ClayReportingEntities Context;
+        private clayreportingEntities Context;
 
-        public DARapport(ClayReportingEntities context)
+        public DARapport(clayreportingEntities context)
         {
             Context = context;
             List<etat> etats = Context.etat.ToList();
