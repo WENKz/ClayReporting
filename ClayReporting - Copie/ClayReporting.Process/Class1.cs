@@ -12,6 +12,7 @@ namespace ClayReporting.Process
 {
     public class Class1
     {
+
         public void test()
         {
             PageGraphique pg = new PageGraphique();
