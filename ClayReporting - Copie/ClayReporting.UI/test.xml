@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <datas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" date="03/02/2016">
-  <Data lot="15" timecode="0">
-    <ComponentId>0</ComponentId>
-    <ColorboundId>0</ColorboundId>
-    <QualityId>0</QualityId>
-    <PerformanceId>0</PerformanceId>
+  <data lot="0" timecode="0">
     <component>toto</component>
     <colorbound>green</colorbound>
     <quality />
@@ -13,12 +9,8 @@
     <pressure>0</pressure>
     <layout>0</layout>
     <result>0</result>
-  </Data>
-  <Data lot="15" timecode="0">
-    <ComponentId>0</ComponentId>
-    <ColorboundId>0</ColorboundId>
-    <QualityId>0</QualityId>
-    <PerformanceId>0</PerformanceId>
+  </data>
+  <data lot="0" timecode="0">
     <component>titi</component>
     <colorbound>red</colorbound>
     <quality />
@@ -27,5 +19,5 @@
     <pressure>0</pressure>
     <layout>0</layout>
     <result>0</result>
-  </Data>
+  </data>
 </datas>

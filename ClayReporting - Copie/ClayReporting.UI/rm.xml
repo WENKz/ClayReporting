@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<RapportMois xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" debutPeride="01/01/2017" finPeriode="31/01/2017">
+  <rapport date="01/01/0001">
+    <data lot="0">
+      <component>toto</component>
+      <colorbound>green</colorbound>
+      <quality />
+      <performance />
+    </data>
+    <data lot="0">
+      <component>titi</component>
+      <colorbound>red</colorbound>
+      <quality />
+      <performance />
+    </data>
+  </rapport>
+  <rapport date="01/01/0001">
+    <data lot="0">
+      <component>toto</component>
+      <colorbound>green</colorbound>
+      <quality />
+      <performance />
+    </data>
+    <data lot="0">
+      <component>titi</component>
+      <colorbound>red</colorbound>
+      <quality />
+      <performance />
+    </data>
+  </rapport>
+  <rapport date="01/01/0001">
+    <data lot="0">
+      <component>toto</component>
+      <colorbound>green</colorbound>
+      <quality />
+      <performance />
+    </data>
+    <data lot="0">
+      <component>titi</component>
+      <colorbound>red</colorbound>
+      <quality />
+      <performance />
+    </data>
+  </rapport>
+</RapportMois>

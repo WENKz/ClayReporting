@@ -14,10 +14,12 @@ namespace ClayReporting.UI.Controllers
     {
         public ActionResult Index()
         {
-             Class1 c1 = new Class1();
-              c1.test();
-              
-         
+            Class1 c1 = new Class1();
+            c1.test();
+
+            PageGraphique pg = new PageGraphique();
+            Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
+
             return View();
         }
 
