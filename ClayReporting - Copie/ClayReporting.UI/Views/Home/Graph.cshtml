@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Graph";
+
+}
+@Model ClayReporting.DataAcces
+
+
+<div class="mdl-layout__tab-panel is-active" id="overview">
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card__supporting-text">
+                <h4>Rechercher par date</h4>
+                <div style="text-align:center">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="" for="from">From:</label>
+
+                        <input class="mdl-textfield__input" type="date" id="from">
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="" for="to">To:</label>
+
+                        <input class="mdl-textfield__input" type="date" id="to">
+                    </div>
+
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<div style="max-width:60%; margin:auto">
+    <h2>Graphique Quality/Lot</h2>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div id="chart_div"></div>
+
+    <h2>Graphique Quality/Component</h2>
+
+    <div id="chart_div_qc"></div>
+
+    <h2>Graphique Performance/Layout</h2>
+
+    <div id="chart_div_pl"></div>
+
+    <h2>Graphique Nombre de lot/Color</h2>
+
+    <div id="chart_div_nc"></div>
+</div>
+
+
+
+
+
+<script>
+  
+    @{
+        //var test = (ViewBag.ListRapports as ICollection<@Model.rapport>).First().dateTime;   
+    }
+    
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawBasic);
+    google.charts.setOnLoadCallback(drawGraphQC);
+    google.charts.setOnLoadCallback(drawGraphPL);
+    google.charts.setOnLoadCallback(drawGraphNC);
+
+    function drawBasic() {
+
+        var data = google.visualization.arrayToDataTable([
+       ['Lot', 'Quality', { role: 'style' }],
+       ['15', 10, '#b87333'],
+       ['16', 20, 'silver'],
+       ['17', 30, 'gold'],
+        ]);
+
+        var options = {
+            vAxis: {
+                ticks: [
+                    { v: 10, f: 'Low' },
+                    { v: 20, f: "Medium" },
+                    { v: 30, f: "Hight" }
+                ],
+                title: 'Quality'
+            },
+            hAxis: {
+                title: 'Numéro de lot',
+            }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+
+    function drawGraphQC() {
+
+        var data = google.visualization.arrayToDataTable([
+       ['Component', 'Quality', { role: 'style' }],
+       ['15', 10, '#b87333'],
+       ['16', 20, 'silver'],
+       ['17', 30, 'gold'],
+        ]);
+
+        var options = {
+            vAxis: {
+                ticks: [
+                    { v: 10, f: 'Low' },
+                    { v: 20, f: "Medium" },
+                    { v: 30, f: "Hight" }
+                ],
+                title: 'Quality'
+            },
+            hAxis: {
+                title: 'Component',
+            }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_qc'));
+
+        chart.draw(data, options);
+    }
+
+    function drawGraphPL() {
+
+        var data = google.visualization.arrayToDataTable([
+       ['Layout', 'Performance', { role: 'style' }],
+       ['15', 10, '#b87333'],
+       ['16', 20, 'silver'],
+       ['17', 30, 'gold'],
+        ]);
+
+        var options = {
+            vAxis: {
+                ticks: [
+                    { v: 10, f: 'Low' },
+                    { v: 20, f: "Medium" },
+                    { v: 30, f: "Hight" }
+                ],
+                title: 'Performance'
+            },
+            hAxis: {
+                title: 'Layout',
+            }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_pl'));
+
+        chart.draw(data, options);
+    }
+
+    function drawGraphNC() {
+
+        var data = google.visualization.arrayToDataTable([
+       ['Color', 'Nb lot', { role: 'style' }],
+       ['15', 10, '#b87333'],
+       ['16', 20, 'silver'],
+       ['17', 30, 'gold'],
+        ]);
+
+        var options = {
+            vAxis: {
+
+                title: 'NB lot'
+            },
+            hAxis: {
+                title: 'Color',
+            }
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_nc'));
+
+        chart.draw(data, options);
+    }
+
+
+</script>

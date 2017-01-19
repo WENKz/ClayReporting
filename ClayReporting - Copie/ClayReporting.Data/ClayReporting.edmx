@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClayReportingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="composant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="couleur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="offset" Type="int" />
+          <Property Name="pressure" Type="int" />
+          <Property Name="layout" Type="int" />
+          <Property Name="result" Type="bit" />
+          <Property Name="lot" Type="int" />
+          <Property Name="timecode" Type="int" />
+          <Property Name="id_rapport" Type="int" />
+          <Property Name="id_couleur" Type="int" />
+          <Property Name="id_etat" Type="int" />
+          <Property Name="id_composant" Type="int" />
+          <Property Name="id_etat_1" Type="int" />
+        </EntityType>
+        <EntityType Name="etat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="rapport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_data_id_composant">
+          <End Role="composant" Type="Self.composant" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="composant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_composant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_couleur">
+          <End Role="couleur" Type="Self.couleur" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="couleur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_couleur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_etat">
+          <End Role="etat" Type="Self.etat" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etat">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_etat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_etat_1">
+          <End Role="etat" Type="Self.etat" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etat">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_etat_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_rapport">
+          <End Role="rapport" Type="Self.rapport" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rapport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_rapport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClayReportingModelStoreContainer">
+          <EntitySet Name="composant" EntityType="Self.composant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="couleur" EntityType="Self.couleur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="data" EntityType="Self.data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="etat" EntityType="Self.etat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rapport" EntityType="Self.rapport" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_data_id_composant" Association="Self.FK_data_id_composant">
+            <End Role="composant" EntitySet="composant" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_couleur" Association="Self.FK_data_id_couleur">
+            <End Role="couleur" EntitySet="couleur" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_etat" Association="Self.FK_data_id_etat">
+            <End Role="etat" EntitySet="etat" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_etat_1" Association="Self.FK_data_id_etat_1">
+            <End Role="etat" EntitySet="etat" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_rapport" Association="Self.FK_data_id_rapport">
+            <End Role="rapport" EntitySet="rapport" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClayReportingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="composant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="data" Relationship="Self.FK_data_id_composant" FromRole="composant" ToRole="data" />
+        </EntityType>
+        <EntityType Name="couleur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="data" Relationship="Self.FK_data_id_couleur" FromRole="couleur" ToRole="data" />
+        </EntityType>
+        <EntityType Name="data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="offset" Type="Int32" />
+          <Property Name="pressure" Type="Int32" />
+          <Property Name="layout" Type="Int32" />
+          <Property Name="result" Type="Boolean" />
+          <Property Name="lot" Type="Int32" />
+          <Property Name="timecode" Type="Int32" />
+          <Property Name="id_rapport" Type="Int32" />
+          <Property Name="id_couleur" Type="Int32" />
+          <Property Name="id_etat" Type="Int32" />
+          <Property Name="id_composant" Type="Int32" />
+          <Property Name="id_etat_1" Type="Int32" />
+          <NavigationProperty Name="composant" Relationship="Self.FK_data_id_composant" FromRole="data" ToRole="composant" />
+          <NavigationProperty Name="couleur" Relationship="Self.FK_data_id_couleur" FromRole="data" ToRole="couleur" />
+          <NavigationProperty Name="etat" Relationship="Self.FK_data_id_etat" FromRole="data" ToRole="etat" />
+          <NavigationProperty Name="etat1" Relationship="Self.FK_data_id_etat_1" FromRole="data" ToRole="etat" />
+          <NavigationProperty Name="rapport" Relationship="Self.FK_data_id_rapport" FromRole="data" ToRole="rapport" />
+        </EntityType>
+        <EntityType Name="etat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="data" Relationship="Self.FK_data_id_etat" FromRole="etat" ToRole="data" />
+          <NavigationProperty Name="data1" Relationship="Self.FK_data_id_etat_1" FromRole="etat" ToRole="data" />
+        </EntityType>
+        <EntityType Name="rapport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="data" Relationship="Self.FK_data_id_rapport" FromRole="rapport" ToRole="data" />
+        </EntityType>
+        <Association Name="FK_data_id_composant">
+          <End Role="composant" Type="Self.composant" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="composant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_composant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_couleur">
+          <End Role="couleur" Type="Self.couleur" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="couleur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_couleur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_etat">
+          <End Role="etat" Type="Self.etat" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etat">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_etat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_etat_1">
+          <End Role="etat" Type="Self.etat" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etat">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_etat_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_data_id_rapport">
+          <End Role="rapport" Type="Self.rapport" Multiplicity="0..1" />
+          <End Role="data" Type="Self.data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rapport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="data">
+              <PropertyRef Name="id_rapport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClayReportingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="composant" EntityType="Self.composant" />
+          <EntitySet Name="couleur" EntityType="Self.couleur" />
+          <EntitySet Name="data" EntityType="Self.data" />
+          <EntitySet Name="etat" EntityType="Self.etat" />
+          <EntitySet Name="rapport" EntityType="Self.rapport" />
+          <AssociationSet Name="FK_data_id_composant" Association="Self.FK_data_id_composant">
+            <End Role="composant" EntitySet="composant" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_couleur" Association="Self.FK_data_id_couleur">
+            <End Role="couleur" EntitySet="couleur" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_etat" Association="Self.FK_data_id_etat">
+            <End Role="etat" EntitySet="etat" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_etat_1" Association="Self.FK_data_id_etat_1">
+            <End Role="etat" EntitySet="etat" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_data_id_rapport" Association="Self.FK_data_id_rapport">
+            <End Role="rapport" EntitySet="rapport" />
+            <End Role="data" EntitySet="data" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClayReportingModelStoreContainer" CdmEntityContainer="ClayReportingEntities">
+          <EntitySetMapping Name="composant">
+            <EntityTypeMapping TypeName="ClayReportingModel.composant">
+              <MappingFragment StoreEntitySet="composant">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="couleur">
+            <EntityTypeMapping TypeName="ClayReportingModel.couleur">
+              <MappingFragment StoreEntitySet="couleur">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="data">
+            <EntityTypeMapping TypeName="ClayReportingModel.data">
+              <MappingFragment StoreEntitySet="data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="offset" ColumnName="offset" />
+                <ScalarProperty Name="pressure" ColumnName="pressure" />
+                <ScalarProperty Name="layout" ColumnName="layout" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="lot" ColumnName="lot" />
+                <ScalarProperty Name="timecode" ColumnName="timecode" />
+                <ScalarProperty Name="id_rapport" ColumnName="id_rapport" />
+                <ScalarProperty Name="id_couleur" ColumnName="id_couleur" />
+                <ScalarProperty Name="id_etat" ColumnName="id_etat" />
+                <ScalarProperty Name="id_composant" ColumnName="id_composant" />
+                <ScalarProperty Name="id_etat_1" ColumnName="id_etat_1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="etat">
+            <EntityTypeMapping TypeName="ClayReportingModel.etat">
+              <MappingFragment StoreEntitySet="etat">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rapport">
+            <EntityTypeMapping TypeName="ClayReportingModel.rapport">
+              <MappingFragment StoreEntitySet="rapport">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

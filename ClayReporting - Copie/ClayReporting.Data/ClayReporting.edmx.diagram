@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e6e100ea12644d239b1d6792430eaa5e" Name="Diagram1">
+        <EntityTypeShape EntityType="ClayReportingModel.composant" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClayReportingModel.couleur" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClayReportingModel.data" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClayReportingModel.etat" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClayReportingModel.rapport" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="ClayReportingModel.FK_data_id_composant" ManuallyRouted="false" />
+        <AssociationConnector Association="ClayReportingModel.FK_data_id_couleur" ManuallyRouted="false" />
+        <AssociationConnector Association="ClayReportingModel.FK_data_id_etat" ManuallyRouted="false" />
+        <AssociationConnector Association="ClayReportingModel.FK_data_id_etat_1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClayReportingModel.FK_data_id_rapport" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
