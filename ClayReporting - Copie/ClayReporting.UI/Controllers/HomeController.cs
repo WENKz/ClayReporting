@@ -1,11 +1,11 @@
-﻿//using ClayReporting.DataAcces;
-//using ClayReporting.Process;
+﻿using ClayReporting.DataAcces;
+using ClayReporting.Process;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using ClayReporting.Process;
+using ClayReporting.Process;
 using System.Web.Script.Serialization;
 
 namespace ClayReporting.UI.Controllers
@@ -14,9 +14,9 @@ namespace ClayReporting.UI.Controllers
     {
         public ActionResult Index()
         {
-            /* Class1 c1 = new Class1();
+             Class1 c1 = new Class1();
               c1.test();
-              */
+              
          
             return View();
         }
