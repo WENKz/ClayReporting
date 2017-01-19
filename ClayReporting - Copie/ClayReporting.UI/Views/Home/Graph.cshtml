@@ -2,7 +2,7 @@
     ViewBag.Title = "Graph";
 
 }
-@Model ClayReporting.DataAcces
+
 
 
 <div class="mdl-layout__tab-panel is-active" id="overview">
@@ -51,7 +51,160 @@
 </div>
 
 
+@ViewData["date"];
+<script>
+    var graphC = [];
+    var graphQC = [];
+    var graphPL = [];
+    var graphNC = [];
 
+    @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
+            {
+
+              <text>
+
+    graphC.push(['@std.Value["lot"]', @std.Value["quality"], '@std.Value["couleur"]']);
+    graphQC.push(['@std.Value["composant"]',@std.Value["quality"],'@std.Value["couleur"]']);
+    graphPL.push(['@std.Value["layout"]',@std.Value["performance"],'@std.Value["couleur"]']);
+    graphNC.push(['@std.Value["couleur"]',@std.Value["lot"],'@std.Value["couleur"]']);
+
+             </text>
+            }
+
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+
+
+    google.charts.setOnLoadCallback(drawBasic);
+    google.charts.setOnLoadCallback(drawGraphQC);
+    google.charts.setOnLoadCallback(drawGraphPL);
+    google.charts.setOnLoadCallback(drawGraphNC);
+
+    function drawBasic() {
+
+        var newArray = [];
+
+        var countT = graphC.length;
+        newArray[0] = ["lot", "Quality", { role: 'style' }];
+
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphC[j];
+        }
+        var data = google.visualization.arrayToDataTable(newArray);
+
+        var options = {
+            vAxis: {
+                ticks: [
+                    { v: 10, f: 'Low' },
+                    { v: 20, f: "Medium" },
+                    { v: 30, f: "Hight" }
+                ],
+                title: 'Quality'
+
+            },
+            hAxis: {
+                title: 'Numéro de lot',
+            }, legend: { position: "none" },
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+
+    function drawGraphQC() {
+
+        var newArray = [];
+
+        var countT = graphQC.length;
+        newArray[0] = ['Component', 'Quality', { role: 'style' }];
+
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphQC[j];
+        }
+        var data = google.visualization.arrayToDataTable(newArray);
+
+        var options = {
+            vAxis: {
+                ticks: [
+                    { v: 10, f: 'Low' },
+                    { v: 20, f: "Medium" },
+                    { v: 30, f: "Hight" }
+                ],
+                title: 'Quality'
+            },
+            hAxis: {
+                title: 'Component',
+            }, legend: { position: "none" },
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_qc'));
+
+        chart.draw(data, options);
+    }
+
+    function drawGraphPL() {
+
+        var newArray = [];
+
+        var countT = graphPL.length;
+        newArray[0] = ["Layout", "Performance", { role: 'style' }];
+
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphPL[j];
+        }
+
+        var data = google.visualization.arrayToDataTable(newArray);
+
+        var options = {
+            vAxis: {
+                ticks: [
+                    { v: 10, f: 'Low' },
+                    { v: 20, f: "Medium" },
+                    { v: 30, f: "Hight" }
+                ],
+                title: 'Performance'
+            },
+            hAxis: {
+                title: 'Layout',
+            }, legend: { position: "none" },
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_pl'));
+
+        chart.draw(data, options);
+    }
+
+    function drawGraphNC() {
+
+        var newArray = [];
+
+        var countT = graphNC.length;
+        newArray[0] = ["Color", "NB lot", { role: 'style' }];
+
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphNC[j];
+        }
+        var data = google.visualization.arrayToDataTable(newArray);
+
+        var options = {
+            vAxis: {
+
+                title: 'NB lot'
+            },
+            hAxis: {
+                title: 'Color',
+            }, legend: { position: "none" },
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_nc'));
+
+        chart.draw(data, options);
+    }
+</script>
 
 
 <script>
