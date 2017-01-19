@@ -109,7 +109,6 @@
       <DependentUpon>ClayReporting.edmx</DependentUpon>
       <LastGenOutput>ClayReporting.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ClayReporting.edmx.sql" />
     <Content Include="ClayReporting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ClayReporting.edmx</DependentUpon>

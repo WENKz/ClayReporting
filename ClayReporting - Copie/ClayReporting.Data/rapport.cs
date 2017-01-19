@@ -9,10 +9,9 @@
 
 namespace ClayReporting.DataAcces
 {
-    using ClayReporting.DataAcces.Modeles;
+    using System.Xml.Serialization;
     using System;
     using System.Collections.Generic;
-    using System.Xml.Serialization;
     [XmlRoot("datas")]
     public partial class rapport
     {
@@ -21,11 +20,9 @@ namespace ClayReporting.DataAcces
         {
             this.data = new List<data>();
         }
-
         [XmlIgnore]
         public int id { get; set; }
         //public Nullable<System.DateTime> dateTime { get; set; }
-    
         [XmlElement("data")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual List<data> data { get; set; }

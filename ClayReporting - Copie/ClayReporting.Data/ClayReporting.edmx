@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ClayReportingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="clayreportingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="composant">
           <Key>
             <PropertyRef Name="id" />
@@ -110,7 +110,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ClayReportingModelStoreContainer">
+        <EntityContainer Name="clayreportingModelStoreContainer">
           <EntitySet Name="composant" EntityType="Self.composant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="couleur" EntityType="Self.couleur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="data" EntityType="Self.data" Schema="dbo" store:Type="Tables" />
@@ -141,7 +141,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ClayReportingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="clayreportingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="composant">
           <Key>
             <PropertyRef Name="id" />
@@ -257,7 +257,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ClayReportingEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="clayreportingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="composant" EntityType="Self.composant" />
           <EntitySet Name="couleur" EntityType="Self.couleur" />
           <EntitySet Name="data" EntityType="Self.data" />
@@ -289,9 +289,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ClayReportingModelStoreContainer" CdmEntityContainer="ClayReportingEntities">
+        <EntityContainerMapping StorageEntityContainer="clayreportingModelStoreContainer" CdmEntityContainer="clayreportingEntities">
           <EntitySetMapping Name="composant">
-            <EntityTypeMapping TypeName="ClayReportingModel.composant">
+            <EntityTypeMapping TypeName="clayreportingModel.composant">
               <MappingFragment StoreEntitySet="composant">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
@@ -299,7 +299,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="couleur">
-            <EntityTypeMapping TypeName="ClayReportingModel.couleur">
+            <EntityTypeMapping TypeName="clayreportingModel.couleur">
               <MappingFragment StoreEntitySet="couleur">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
@@ -307,7 +307,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="data">
-            <EntityTypeMapping TypeName="ClayReportingModel.data">
+            <EntityTypeMapping TypeName="clayreportingModel.data">
               <MappingFragment StoreEntitySet="data">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="offset" ColumnName="offset" />
@@ -325,7 +325,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="etat">
-            <EntityTypeMapping TypeName="ClayReportingModel.etat">
+            <EntityTypeMapping TypeName="clayreportingModel.etat">
               <MappingFragment StoreEntitySet="etat">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="libelle" ColumnName="libelle" />
@@ -333,7 +333,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rapport">
-            <EntityTypeMapping TypeName="ClayReportingModel.rapport">
+            <EntityTypeMapping TypeName="clayreportingModel.rapport">
               <MappingFragment StoreEntitySet="rapport">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="dateTime" ColumnName="dateTime" />

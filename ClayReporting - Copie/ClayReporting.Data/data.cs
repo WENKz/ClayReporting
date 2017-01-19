@@ -9,43 +9,35 @@
 
 namespace ClayReporting.DataAcces
 {
-    using ClayReporting.DataAcces.Modeles;
     using System;
+    using ClayReporting.DataAcces.Modeles;
     using System.Collections.Generic;
     using System.Xml.Serialization;
-    
     public partial class data : DataExport
     {
-        //public int id { get; set; }
-        //[XmlIgnore]
-        //public Nullable<int> offset { get; set; }
-        //[XmlIgnore]
-        //public Nullable<int> pressure { get; set; }
-        //[XmlIgnore]
-        //public Nullable<int> layout { get; set; }
-        //[XmlIgnore]
-        //public Nullable<bool> result { get; set; }
-        //public Nullable<int> lot { get; set; }
-        //[XmlIgnore]
-        //public Nullable<int> timecode { get; set; }
-        /*
+        /*public int id { get; set; }
+        public Nullable<int> offset { get; set; }
+        public Nullable<int> pressure { get; set; }
+        public Nullable<int> layout { get; set; }
+        public Nullable<bool> result { get; set; }
+        public Nullable<int> lot { get; set; }
+        public Nullable<int> timecode { get; set; }
+        
         public Nullable<int> id_couleur { get; set; }
         public Nullable<int> id_etat { get; set; }
         public Nullable<int> id_composant { get; set; }
-        
+        public Nullable<int> id_etat_1 { get; set; }
     
         public virtual composant composant { get; set; }
         public virtual couleur couleur { get; set; }
         public virtual etat etat { get; set; }
-        public virtual etat etat1 { get; set; }
-        [XmlIgnore]
-        public Nullable<int> id_etat_1 { get; set; }*/
+        public virtual etat etat1 { get; set; }*/
         [XmlIgnore]
         public Nullable<int> id_rapport { get; set; }
         [XmlIgnore]
         public virtual rapport rapport { get; set; }
 
-        public data():base()
+        public data() : base()
         {
             this.layout = 0;
             this.offset = 0;

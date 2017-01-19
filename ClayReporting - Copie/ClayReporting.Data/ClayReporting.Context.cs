@@ -13,10 +13,10 @@ namespace ClayReporting.DataAcces
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ClayReportingEntities : DbContext
+    public partial class clayreportingEntities : DbContext
     {
-        public ClayReportingEntities()
-            : base("name=ClayReportingEntities")
+        public clayreportingEntities()
+            : base("name=clayreportingEntities")
         {
         }
     

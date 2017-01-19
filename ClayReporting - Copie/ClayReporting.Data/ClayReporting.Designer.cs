@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'C:\Users\Allan\Desktop\ClayReporting - Copie\ClayReporting.Data\ClayReporting.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'C:\Users\Allan\Source\Repos\ClayReporting\ClayReporting - Copie\ClayReporting.Data\ClayReporting.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

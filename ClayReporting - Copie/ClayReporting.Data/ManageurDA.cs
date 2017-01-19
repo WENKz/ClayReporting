@@ -14,7 +14,7 @@ namespace ClayReporting.DataAcces
 
         public ManageurDA()
         {
-            ClayReportingEntities context = new ClayReportingEntities();
+            clayreportingEntities context = new clayreportingEntities();
             Rapports = new DARapport(context);
 
         }
