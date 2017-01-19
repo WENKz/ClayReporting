@@ -1,11 +1,11 @@
-﻿using ClayReporting.DataAcces;
-using ClayReporting.Process;
+﻿//using ClayReporting.DataAcces;
+//using ClayReporting.Process;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ClayReporting.Process;
+//using ClayReporting.Process;
 using System.Web.Script.Serialization;
 
 namespace ClayReporting.UI.Controllers
@@ -14,9 +14,9 @@ namespace ClayReporting.UI.Controllers
     {
         public ActionResult Index()
         {
-             Class1 c1 = new Class1();
+            /* Class1 c1 = new Class1();
               c1.test();
-
+              */
          
             return View();
         }
@@ -71,7 +71,7 @@ namespace ClayReporting.UI.Controllers
 
             var tab2 = new Dictionary<string, dynamic>();
             tab2["quality"] = etat["high"];
-            tab2["performance"] = etat["high"];
+            tab2["performance"] = etat["medium"];
             tab2["couleur"] = "green";
             tab2["lot"] = 15;
             tab2["layout"] = 456456;
