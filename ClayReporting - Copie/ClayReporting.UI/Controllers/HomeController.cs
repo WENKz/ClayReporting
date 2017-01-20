@@ -1,11 +1,8 @@
-﻿using ClayReporting.DataAcces;
-using ClayReporting.Process;
+﻿using ClayReporting.Process;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
+using System.Globalization;
 
 namespace ClayReporting.UI.Controllers
 {
@@ -84,6 +81,18 @@ namespace ClayReporting.UI.Controllers
             
             Dictionary<string, dynamic> test = pg.GenererDonneesgraphs(new DateTime(), new DateTime());
             ViewData["list"] = test;
+            return View();
+        }
+
+        public ActionResult Export()
+        {
+            
+            RapportMois rapportMois = new RapportMois(new DateTime(),new DateTime());
+            if (rapportMois.Rapports.Count > 0)
+            {
+                ManipulateurXML xml = new ManipulateurXML();
+                xml.Ecrire(rapportMois, typeof(RapportMois), string.Format("rapprot-{0}-{1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
+            }
             return View();
         }
     }
