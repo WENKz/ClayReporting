@@ -14,8 +14,6 @@ namespace ClayReporting.DataAcces.DAS
         public DARapport(clayreportingEntities context)
         {
             Context = context;
-            List<etat> etats = Context.etat.ToList();
-            Context.Configuration.ProxyCreationEnabled = true;
         }
 
         public List<rapport> getAllRapportInPeriod(DateTime start, DateTime end)
