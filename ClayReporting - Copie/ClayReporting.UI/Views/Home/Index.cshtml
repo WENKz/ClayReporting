@@ -1,10 +1,25 @@
-﻿<div class="mdl-layout__tab-panel is-active" id="overview">
+﻿@if (@ViewData["messageError"] != null)
+{
+    <div class="mdl-layout__tab-panel is-active" id="overview">
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="background:#d9534f">
+
+            <div style="text-align:center;color: white; font-weight: bold; width: 100%; text-align: center; font-size: 23px;">
+                @ViewData["messageError"]
+            </div>
+
+
+        </section>
+
+    </div>
+}
+
+<div class="mdl-layout__tab-panel is-active" id="overview">
     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
         <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
             <div class="mdl-card__supporting-text">
                 @if (@ViewData["fromDate"] != null)
                 {
-                <h4>Rechercher par date du @Convert.ToDateTime(ViewData["fromDate"]).ToString("dd/MM/yyyy"); au @Convert.ToDateTime(ViewData["toDate"]).ToString("dd/MM/yyyy"); </h4>
+                <h4>Rechercher par date du @Convert.ToDateTime(ViewData["fromDate"]).ToString("dd/MM/yyyy") au @Convert.ToDateTime(ViewData["toDate"]).ToString("dd/MM/yyyy") </h4>
                 }
                 else
                 {
@@ -64,7 +79,7 @@
                                     @std.Value["quality"]
                                 </td>
                                 <td>
-                                    @std.Value["couleur"]
+                                    <span style="color:@std.Value["couleur"]">@std.Value["couleur"]</span> 
                                 </td>
 
                             </tr>

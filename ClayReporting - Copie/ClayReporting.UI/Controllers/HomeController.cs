@@ -17,16 +17,22 @@ namespace ClayReporting.UI.Controllers
             DateTime date = new DateTime();
             PageGraphique pg = new PageGraphique();
 
-            if (!string.IsNullOrEmpty(nvc["fromDate"]) && !string.IsNullOrEmpty(nvc["toDate"]))
+            if (!string.IsNullOrEmpty(nvc["fromDate"]) && !string.IsNullOrEmpty(nvc["toDate"]) )
             {
                 DateTime fromDate = Convert.ToDateTime(nvc["fromDate"]);
                 DateTime toDate = Convert.ToDateTime(nvc["toDate"]);
-
-                Dictionary<int, Dictionary<string, dynamic>> données = pg.ObtenirDonneesGraphique(fromDate, toDate);
-                ViewData["fromDate"] = fromDate;
-                ViewData["toDate"] = toDate;
-                ViewData["list"] = données;
-                return View();
+                if (fromDate <= toDate)
+                {
+                    Dictionary<int, Dictionary<string, dynamic>> données = pg.ObtenirDonneesGraphique(fromDate, toDate);
+                    ViewData["fromDate"] = fromDate;
+                    ViewData["toDate"] = toDate;
+                    ViewData["list"] = données;
+                    return View();
+                }
+                else
+                {
+                    ViewData["messageError"] = "La periode selectionné est incorrecte";
+                }
             }
 
             Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
@@ -62,12 +68,18 @@ namespace ClayReporting.UI.Controllers
              {
                  DateTime fromDate = Convert.ToDateTime(nvc["fromDate"]);
                DateTime toDate = Convert.ToDateTime(nvc["toDate"]);
-
-                Dictionary<string, dynamic> donnees = pg.GenererDonneesgraphs(fromDate, toDate );
-                ViewData["fromDate"] = fromDate;
-                ViewData["toDate"] = toDate;
-                ViewData["list"] = donnees;
-                return View();
+                if (fromDate <= toDate)
+                {
+                    Dictionary<string, dynamic> donnees = pg.GenererDonneesgraphs(fromDate, toDate);
+                    ViewData["fromDate"] = fromDate;
+                    ViewData["toDate"] = toDate;
+                    ViewData["list"] = donnees;
+                    return View();
+                }
+                else
+                {
+                    ViewData["messageError"] = "La periode selectionné est incorrecte";
+                }
             }
             
             Dictionary<string, dynamic> test = pg.GenererDonneesgraphs(new DateTime(), new DateTime());

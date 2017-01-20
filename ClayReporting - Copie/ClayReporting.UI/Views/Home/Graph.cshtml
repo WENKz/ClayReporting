@@ -2,37 +2,50 @@
     ViewBag.Title = "Graph";
 
 }
+@if (@ViewData["messageError"] != null)
+{
+    <div class="mdl-layout__tab-panel is-active" id="overview">
+        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="background:#d9534f">
+          
+                    <div style="text-align:center;color: white; font-weight: bold; width: 100%; text-align: center; font-size: 23px;">
+                       @ViewData["messageError"]
+                    </div>
+           
 
+        </section>
+
+    </div>
+}
 
 <div class="mdl-layout__tab-panel is-active" id="overview">
     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
         <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
             <div class="mdl-card__supporting-text">
-                    @if (@ViewData["fromDate"] != null)
-                    {
-                        <h4>Rechercher par date du @Convert.ToDateTime(ViewData["fromDate"]).ToString("dd/MM/yyyy"); au @Convert.ToDateTime(ViewData["toDate"]).ToString("dd/MM/yyyy"); </h4>
-                    }
-                    else
-                    {
-                        <h4>Rechercher par date </h4>
-                    }
-                    <div style="text-align:center">
-                        <form method="POST">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <label class="" for="from">From:</label>
+                @if (@ViewData["fromDate"] != null)
+                {
+                    <h4>Rechercher par date du @Convert.ToDateTime(ViewData["fromDate"]).ToString("dd/MM/yyyy") au @Convert.ToDateTime(ViewData["toDate"]).ToString("dd/MM/yyyy") </h4>
+                }
+                else
+                {
+                    <h4>Rechercher par date </h4>
+                }
+                <div style="text-align:center">
+                    <form method="POST">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="" for="from">From:</label>
 
-                                <input class="mdl-textfield__input" name="fromDate" value="@ViewData["fromDate"]" type="date" id="from">
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <label class="" for="to">To:</label>
+                            <input class="mdl-textfield__input" name="fromDate" value="@ViewData["fromDate"]" type="date" id="from">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="" for="to">To:</label>
 
-                                <input class="mdl-textfield__input" name="toDate" placeholder="@ViewData["toDate"]" type="date" id="to">
-                            </div>
+                            <input class="mdl-textfield__input" name="toDate" placeholder="@ViewData["toDate"]" type="date" id="to">
+                        </div>
 
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
-                        </form>
-                    </div>
+                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
+                    </form>
                 </div>
+            </div>
         </div>
 
     </section>
@@ -65,7 +78,7 @@
     var graphPL = [];
     var graphNC = [];
     var moyQC = [];
-    var listComposant=[];
+    var listComposant = [];
     var MoyenC = [];
     @{
         var data = ViewData["list"] as IDictionary<string, dynamic>;
@@ -74,85 +87,85 @@
     {
  <text>
     graphQC.push(['@std', @data["graphQualiteParComposant"][std], 'red']);
- </text>
+    </text>
                 }
 
-        @foreach (var std in data["graphNombreLotParColor"].Keys)
+    @foreach (var std in data["graphNombreLotParColor"].Keys)
     {
         <text>
-           graphNC.push(['@std', @data["graphNombreLotParColor"][std], 'red']);
+    graphNC.push(['@std', @data["graphNombreLotParColor"][std], 'red']);
     </text>
     }
 
-        @foreach (var std in data["graphQualiteParLot"].Keys)
+    @foreach (var std in data["graphQualiteParLot"].Keys)
     {
         <text>
-           graphC.push(['@std', @data["graphQualiteParLot"][std], 'red']);
-        </text>
+    graphC.push(['@std', @data["graphQualiteParLot"][std], 'red']);
+    </text>
     }
 
-            @foreach (var std in data["graphPerformanceLayout"].Keys)
+    @foreach (var std in data["graphPerformanceLayout"].Keys)
     {
         <text>
-           graphPL.push(['@std', @data["graphPerformanceLayout"][std], 'red']);
-        </text>
+    graphPL.push(['@std', @data["graphPerformanceLayout"][std], 'red']);
+    </text>
     }
 
 
-                google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
 
 
-                google.charts.setOnLoadCallback(drawBasic);
-                google.charts.setOnLoadCallback(drawGraphQC);
-                google.charts.setOnLoadCallback(drawGraphPL);
-                google.charts.setOnLoadCallback(drawGraphNC);
+    google.charts.setOnLoadCallback(drawBasic);
+    google.charts.setOnLoadCallback(drawGraphQC);
+    google.charts.setOnLoadCallback(drawGraphPL);
+    google.charts.setOnLoadCallback(drawGraphNC);
 
-                function drawBasic() {
+    function drawBasic() {
 
-                    var newArray = [];
+        var newArray = [];
 
-                    var countT = graphC.length;
-                    newArray[0] = ["lot", "Quality", { role: 'style' }];
+        var countT = graphC.length;
+        newArray[0] = ["lot", "Quality", { role: 'style' }];
 
-                    for (j = 0; j <= (countT - 1) ; j++) {
-                        newArray[(j + 1)] = graphC[j];
-                    }
-                    var data = google.visualization.arrayToDataTable(newArray);
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphC[j];
+        }
+        var data = google.visualization.arrayToDataTable(newArray);
 
-                    var options = {
+        var options = {
             vAxis: {
-                    ticks: [
-                    { v: 10, f: 'Low' },
-                    { v: 20, f: "Medium" },
-                    { v: 30, f: "Hight" }
+                ticks: [
+                { v: 10, f: 'Low' },
+                { v: 20, f: "Medium" },
+                { v: 30, f: "Hight" }
                 ],
                 title: 'Quality'
 
             },
             hAxis: {
-                    title: 'Numéro de lot',
+                title: 'Numéro de lot',
             }, legend: { position: "none" },
         };
 
-                var chart = new google.visualization.ColumnChart(
-                  document.getElementById('chart_div'));
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div'));
 
-                chart.draw(data, options);
-            }
+        chart.draw(data, options);
+    }
 
-            function drawGraphQC() {
+    function drawGraphQC() {
 
-                var newArray = [];
+        var newArray = [];
 
-                var countT = graphQC.length;
-                newArray[0] = ['Component', 'Quality', { role: 'style' }];
+        var countT = graphQC.length;
+        newArray[0] = ['Component', 'Quality', { role: 'style' }];
 
-                for (j = 0; j <= (countT - 1) ; j++) {
-                    newArray[(j + 1)] = graphQC[j];
-                }
-                var data = google.visualization.arrayToDataTable(newArray);
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphQC[j];
+        }
+        var data = google.visualization.arrayToDataTable(newArray);
 
-                var options = {
+        var options = {
             vAxis: {
                 ticks: [
                     { v: 10, f: 'Low' },
@@ -166,36 +179,36 @@
             }, legend: { position: "none" },
         };
 
-            var chart = new google.visualization.ColumnChart(
-              document.getElementById('chart_div_qc'));
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_qc'));
 
-            chart.draw(data, options);
+        chart.draw(data, options);
     }
 
-        function drawGraphPL() {
+    function drawGraphPL() {
 
-            var newArray = [];
+        var newArray = [];
 
-            var countT = graphPL.length;
-            newArray[0] = ["Layout", "Performance", { role: 'style' }];
+        var countT = graphPL.length;
+        newArray[0] = ["Layout", "Performance", { role: 'style' }];
 
-            for (j = 0; j <= (countT - 1) ; j++) {
-                newArray[(j + 1)] = graphPL[j];
-            }
+        for (j = 0; j <= (countT - 1) ; j++) {
+            newArray[(j + 1)] = graphPL[j];
+        }
 
-            var data = google.visualization.arrayToDataTable(newArray);
+        var data = google.visualization.arrayToDataTable(newArray);
 
-            var options = {
+        var options = {
             vAxis: {
-            ticks: [
-                    { v: 10, f: 'Low' },
-                    { v: 20, f: "Medium" },
-                    { v: 30, f: "Hight" }
+                ticks: [
+                        { v: 10, f: 'Low' },
+                        { v: 20, f: "Medium" },
+                        { v: 30, f: "Hight" }
                 ],
                 title: 'Performance'
             },
             hAxis: {
-            title: 'Layout',
+                title: 'Layout',
             }, legend: { position: "none" },
         };
 
@@ -220,16 +233,17 @@
         var options = {
             vAxis: {
 
-        title: 'NB lot'
+                title: 'NB lot'
             },
             hAxis: {
-        title: 'Color',
+                title: 'Color',
+                format: 'none',
             }, legend: { position: "none" },
         };
 
-    var chart = new google.visualization.ColumnChart(
-      document.getElementById('chart_div_nc'));
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div_nc'));
 
-    chart.draw(data, options);
+        chart.draw(data, options);
     }
 </script>
