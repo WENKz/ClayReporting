@@ -20,8 +20,8 @@ namespace ClayReporting.Process
             Dictionary<int, int[]> donnesGraphPerformanceParLayout = new Dictionary<int, int[]>();
             donneesGraphs.Add("graphQualiteParComposant", new Dictionary<string, int>());
             donneesGraphs.Add("graphNombreLotParColor", new Dictionary<string, int>());
-            donneesGraphs.Add("graphNombreQualityParLot", new Dictionary<int, int>());
-            donneesGraphs.Add("graphNombrePerformanceLayout", new Dictionary<int, int>());
+            donneesGraphs.Add("graphQualiteParLot", new Dictionary<int, int>());
+            donneesGraphs.Add("graphPerformanceLayout", new Dictionary<int, int>());
             foreach (int r in donnees.Keys)
             {
                 donnesGraphQualityParComposant = GennerDonneesGraphQualityParComposant(donnees[r], donnesGraphQualityParComposant);
@@ -31,8 +31,8 @@ namespace ClayReporting.Process
             }
             donneesGraphs["graphQualiteParComposant"] = CalculeMoyenne(donnesGraphQualityParComposant);
             donneesGraphs["graphNombreLotParColor"] = donnesGraphNombreLotParColor;
-            donneesGraphs["graphNombreQualityParLot"] = donnesGraphQualityParLot;
-            donneesGraphs["graphNombrePerformanceLayout"] = CalculeMoyenne(donnesGraphPerformanceParLayout);
+            donneesGraphs["graphQualiteParLot"] = donnesGraphQualityParLot;
+            donneesGraphs["graphPerformanceLayout"] = CalculeMoyenne(donnesGraphPerformanceParLayout);
             return donneesGraphs;
         }
 
