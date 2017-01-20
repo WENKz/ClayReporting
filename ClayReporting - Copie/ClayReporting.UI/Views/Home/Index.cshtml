@@ -1,4 +1,7 @@
-﻿@if (@ViewData["messageError"] != null)
+﻿@{ 
+    ViewBag.title = "Recapitulatif Tableau";
+}
+@if (@ViewData["messageError"] != null)
 {
     <div class="mdl-layout__tab-panel is-active" id="overview">
         <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" style="background:#d9534f">
@@ -54,6 +57,7 @@
                 <table class="table" id="myTable">
                     <thead>
                         <tr>
+                            <th>date</th>
                             <th>lot</th>
                             <th>layout</th>
                             <th>performance</th>
@@ -66,6 +70,9 @@
                         {
 
                             <tr>
+                                <td>
+                                    @std.Value["date"]
+                                </td>
                                 <td>
                                     @std.Value["lot"]
                                 </td>

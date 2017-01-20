@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <title>ClayReporting - @ViewBag.title</title>
 
     @Scripts.Render("~/bundles/jquery")
 
@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.5.1/jQuery.print.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -77,11 +78,17 @@
              
                 <a href="/Home/Index" id="-Home-Index" class="mdl-layout__tab">Tableau</a>
                 <a href="/Home/Graph"id="-Home-Graph" class="mdl-layout__tab">Graphique</a>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+              
+            
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
                     <i class="material-icons">file_download</i>
                     <span class="visuallyhidden">export</span>
                 </button>
-            </div>
+           
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="printbutton" style=" right: 108px;display:none;position: absolute;  top: 36px; z-index: 999;"onclick="$('#print').print()">
+                    <i class="material-icons">print</i>
+                    <span class="visuallyhidden">imprimer</span>
+                </button></div>
         </header>
         <main class="mdl-layout__content">
             @RenderBody()
@@ -111,6 +118,9 @@
         myString = window.location.pathname.replace("/", "-");
         myString = myString.replace("/", "-");
         $("#" + myString).addClass("is-active");
+        if (window.location.pathname == "/Home/Graph") {
+            $("#printbutton").css('display', "block");
+        }
     </script>
 </bodyclass="mdl-demo>
 </html>
