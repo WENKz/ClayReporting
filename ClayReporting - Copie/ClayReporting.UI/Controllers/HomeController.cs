@@ -51,7 +51,8 @@ namespace ClayReporting.UI.Controllers
 
         public ActionResult Graph()
         {
-            
+            /*Class1 c = new Class1();
+            c.test();*/
             // ViewBag.Message = "Graphique de production";
             var nvc = Request.Form;
             DateTime date = new DateTime();
