@@ -14,10 +14,13 @@ namespace ClayReporting.Process
         {
             Dictionary<int, Dictionary<string, dynamic>> donnees = ObtenirDonneesGraphique(debutPeriode, finPeriode);
             Dictionary<string, dynamic> donneesGraphs = new Dictionary<string, dynamic>();
+            Dictionary<string, int[]> donnesGraphQualityParComposant = new Dictionary<string, int[]>();
+            donneesGraphs.Add("graphQualiteParComposant", new Dictionary<string, int>());
             foreach (int r in donnees.Keys)
             {
-
+                donnesGraphQualityParComposant = GennerDonneesGraphQualityParComposant(donnees[r], donnesGraphQualityParComposant);
             }
+            donneesGraphs["graphQualiteParComposant"] = CalculeMoyenne(donnesGraphQualityParComposant);
             return donneesGraphs;
         }
 
@@ -54,33 +57,32 @@ namespace ClayReporting.Process
             });
             return donnees;
         }
-        public Dictionary<string, int> GennerDonneesGraphQualityParComposant(Dictionary<int, Dictionary<string, dynamic>> test)
+        private Dictionary<string, int[]> GennerDonneesGraphQualityParComposant(Dictionary<string, dynamic> donneeACalculee,Dictionary<string,int[]> donneesExistantes)
         {
-            Dictionary<string, int[]> t = new Dictionary<string, int[]>();
-            foreach (int r in test.Keys)
+            if (!donneesExistantes.Keys.Any(k => k.Equals(donneeACalculee["composant"])))
             {
-                if (!t.Keys.Any(k => k.Equals(test[r]["composant"])))
-                {
-                    t.Add(test[r]["composant"], new int[] { test[r]["quality"], 1 });
-                }
-                else
-                {
-                    t[test[r]["composant"]][0] += test[r]["quality"];
-                    t[test[r]["composant"]][1] += 1;
-                }
-
+                donneesExistantes.Add(donneeACalculee["composant"], new int[] { donneeACalculee["quality"], 1 });
             }
-            Dictionary<string, int> result = new Dictionary<string, int>();
-            foreach (string k in t.Keys)
+            else
             {
-                int moy = t[k][0] / t[k][1];
+                donneesExistantes[donneeACalculee["composant"]][0] += donneeACalculee["quality"];
+                donneesExistantes[donneeACalculee["composant"]][1] += 1;
+            }
+
+            return donneesExistantes;
+        }
+
+        private Dictionary<string, int> CalculeMoyenne(Dictionary<string, int[]> donnees)
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            foreach (string k in donnees.Keys)
+            {
+                int moy = donnees[k][0] / donnees[k][1];
                 result.Add(k, moy);
             }
 
             return result;
         }
-        
-
         public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode) 
         {
 
