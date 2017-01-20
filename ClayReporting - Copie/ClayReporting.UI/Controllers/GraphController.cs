@@ -11,10 +11,12 @@ namespace ClayReporting.UI.Controllers
         // GET: Graph
         public ActionResult Index()
         {
-            PageGraphique pg = new PageGraphique();
-            Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
-            ViewData["list"] = test;
+            
+            
+            
+            //ViewData["list"] = 
             return View();
         }
+        
     }
 }
