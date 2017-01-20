@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Serialization;
+using System.IO;
 namespace ClayReporting.Process
 {
     public class ManipulateurXML
@@ -28,6 +29,17 @@ namespace ClayReporting.Process
             System.IO.FileStream fichier = System.IO.File.Create(chemin);
             Ecriveur.Serialize(fichier, Convert.ChangeType(objet, type));
             fichier.Close();
+        }
+
+        public string Serialize(dynamic objet, Type type)
+        {
+            XmlSerializer serializer = new XmlSerializer(type);
+
+            using (MemoryStream mem = new MemoryStream())
+            {
+                serializer.Serialize(mem, Convert.ChangeType(objet, type));
+                return Encoding.UTF8.GetString(mem.ToArray());
+            }
         }
     }
 }

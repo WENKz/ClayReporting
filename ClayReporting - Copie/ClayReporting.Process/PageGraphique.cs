@@ -131,22 +131,7 @@ namespace ClayReporting.Process
         public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode) 
         {
 
-            return new ManageurDA().Rapports.getAllRapportInPeriod(debutPeriode, finPeriode)
-                       .Select(r => new RapportExport()
-                       {
-                           data = r.data.Select(d =>
-                               new DataExport()
-                               {
-                                   lot = d.lot,
-                                   etat1 = d.etat1,
-                                   etat = d.etat,
-                                   composant = d.composant,
-                                   couleur = d.couleur,
-                               })
-                               .ToList(),
-                           dateTime = r.dateTime,
-                       })
-                       .ToList();
+            
         }
     }
 }
