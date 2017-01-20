@@ -10,24 +10,27 @@ namespace ClayReporting.Process
 {
     public class PageGraphique
     {
-        public Dictionary<int, Dictionary<string, dynamic>> ObtenirDonneesGraphique(DateTime debutPeriode, DateTime finPeriode) 
+        public Dictionary<int, Dictionary<string, dynamic>> ObtenirDonneesGraphique(DateTime debutPeriode, DateTime finPeriode)
         {
             Dictionary<string, int> valeurs = new Dictionary<string, int>();
             valeurs.Add("low", 10);
             valeurs.Add("medium", 20);
             valeurs.Add("high", 30);
 
-            debutPeriode = Convert.ToDateTime("1/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
-            finPeriode = Convert.ToDateTime(DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
+            if (debutPeriode == new DateTime() && finPeriode == new DateTime())
+            {
+                debutPeriode = Convert.ToDateTime("1/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
+                finPeriode = Convert.ToDateTime(DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
+            }
             Dictionary<int, Dictionary<string, dynamic>> donnees = new Dictionary<int, Dictionary<string, dynamic>>();
 
             List<rapport> rapports = new ManageurDA().Rapports.getAllRapportInPeriod(debutPeriode, finPeriode);
-            
+
             int i = 0;
-            rapports.ForEach(delegate(rapport rapportExp)
+            rapports.ForEach(delegate (rapport rapportExp)
             {
-                
-                rapportExp.data.ForEach(delegate(data data) 
+
+                rapportExp.data.ForEach(delegate (data data)
                 {
                     Dictionary<string, dynamic> donnee = new Dictionary<string, dynamic>();
                     donnee.Add("quality", valeurs[data.etat.libelle.ToLower()]);
@@ -44,7 +47,7 @@ namespace ClayReporting.Process
             return donnees;
         }
 
-        public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode) 
+        public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode)
         {
 
             return new ManageurDA().Rapports.getAllRapportInPeriod(debutPeriode, finPeriode)

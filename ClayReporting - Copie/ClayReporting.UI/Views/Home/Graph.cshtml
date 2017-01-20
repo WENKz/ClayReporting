@@ -10,19 +10,21 @@
             <div class="mdl-card__supporting-text">
                 <h4>Rechercher par date</h4>
                 <div style="text-align:center">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <label class="" for="from">From:</label>
+                    <form method="POST">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="" for="from">From:</label>
 
-                        <input class="mdl-textfield__input" type="date" id="from">
-                    </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <label class="" for="to">To:</label>
+                            <input class="mdl-textfield__input" name="fromDate" value="@ViewData["fromDate"]" type="date" id="from">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="" for="to">To:</label>
 
-                        <input class="mdl-textfield__input" type="date" id="to">
-                    </div>
+                            <input class="mdl-textfield__input" name="toDate" placeholder="@ViewData["toDate"]" type="date" id="to">
+                        </div>
 
-                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
-                </div>
+                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
+                    </form>
+                        </div>
             </div>
         </div>
 
@@ -55,20 +57,39 @@
     var graphQC = [];
     var graphPL = [];
     var graphNC = [];
-
+    var moyQC = [];
+    var listComposant=[];
+    var MoyenC=[];
     @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
             {
 
               <text>
-    console.log("@std.Value");
+    //console.log("@std.Value");
     graphC.push(['@std.Value["lot"]', @std.Value["quality"], '@std.Value["couleur"]']);
-    graphQC.push(['@std.Value["composant"]',@std.Value["quality"],'@std.Value["couleur"]']);
+    graphQC.push(['@std.Value["composant"]',@std.Value["quality"], '@std.Value["couleur"]']);
+
+    listComposant.push('@std.Value["composant"]');
+    if (MoyenC["@std.Value["composant"]"] == undefined)
+        MoyenC["@std.Value["composant"]"] = 0;
+    MoyenC["@std.Value["composant"]"] =parseInt(MoyenC["@std.Value["composant"]"] )+parseInt(@std.Value["quality"]);
+
     graphPL.push(['@std.Value["layout"]',@std.Value["performance"],'@std.Value["couleur"]']);
     graphNC.push(['@std.Value["couleur"]',@std.Value["lot"],'@std.Value["couleur"]']);
 
              </text>
             }
-
+    var obj = {};
+    for (var i = 0, j = listComposant.length; i < j; i++) {
+        obj[listComposant[i]] = (obj[listComposant[i]] || 0) + 1;
+    }
+ 
+   
+    var uniqueNames = [];
+    $.each(listComposant, function (i, el) {
+        if ($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+    });
+   
+    console.log(uniqueNames);
     google.charts.load('current', { packages: ['corechart', 'bar'] });
 
 
