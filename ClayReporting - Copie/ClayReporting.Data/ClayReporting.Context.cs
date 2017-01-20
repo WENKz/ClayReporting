@@ -30,5 +30,7 @@ namespace ClayReporting.DataAcces
         public virtual DbSet<data> data { get; set; }
         public virtual DbSet<etat> etat { get; set; }
         public virtual DbSet<rapport> rapport { get; set; }
+
+        public System.Data.Entity.DbSet<ClayReporting.DataAcces.Modeles.DataExport> DataExports { get; set; }
     }
 }
