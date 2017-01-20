@@ -58,5 +58,26 @@ namespace ClayReporting.Process
             endDayMonth = Convert.ToDateTime(DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year);
             Rapports = new List<RapportExport>();
         }
+
+        public RapportMois(DateTime debutPeriode, DateTime finPeriode)
+        {
+            startDayMonth = debutPeriode;
+            endDayMonth = finPeriode;
+            Rapports = new ManageurDA().Rapports.getAllRapportInPeriod(debutPeriode, finPeriode)
+                       .Select(r => new RapportExport()
+                       {
+                           data = r.data.Select(d =>
+                               new DataExport()
+                               {
+                                   etat1 = d.etat1,
+                                   etat = d.etat,
+                                   composant = d.composant,
+                                   couleur = d.couleur,
+                               })
+                               .ToList(),
+                           dateTime = r.dateTime,
+                       })
+                       .ToList();
+        }
     }
 }
