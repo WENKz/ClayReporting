@@ -66,60 +66,62 @@
     var graphNC = [];
     var moyQC = [];
     var listComposant=[];
-    var MoyenC=[];
-    @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
-            {
-
-              <text>
-    //console.log("@std.Value");
-    graphC.push(['@std.Value["lot"]', @std.Value["quality"], '@std.Value["couleur"]']);
-    graphQC.push(['@std.Value["composant"]',@std.Value["quality"], '@std.Value["couleur"]']);
-
-    listComposant.push('@std.Value["composant"]');
-    if (MoyenC["@std.Value["composant"]"] == undefined)
-        MoyenC["@std.Value["composant"]"] = 0;
-    MoyenC["@std.Value["composant"]"] =parseInt(MoyenC["@std.Value["composant"]"] )+parseInt(@std.Value["quality"]);
-
-    graphPL.push(['@std.Value["layout"]',@std.Value["performance"],'@std.Value["couleur"]']);
-    graphNC.push(['@std.Value["couleur"]',@std.Value["lot"],'@std.Value["couleur"]']);
-
-             </text>
-            }
-    var obj = {};
-    for (var i = 0, j = listComposant.length; i < j; i++) {
-        obj[listComposant[i]] = (obj[listComposant[i]] || 0) + 1;
+    var MoyenC = [];
+    @{
+        var data = ViewData["list"] as IDictionary<string, dynamic>;
     }
- 
-   
-    var uniqueNames = [];
-    $.each(listComposant, function (i, el) {
-        if ($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-    });
-   
-    console.log(uniqueNames);
-    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    @foreach (var std in data["graphQualiteParComposant"].Keys)
+    {
+ <text>
+    graphQC.push(['@std', @data["graphQualiteParComposant"][std], 'red']);
+ </text>
+                }
+
+        @foreach (var std in data["graphNombreLotParColor"].Keys)
+    {
+        <text>
+           graphC.push(['@std', @data["graphNombreLotParColor"][std], 'red']);
+    </text>
+    }
+
+        @foreach (var std in data["graphNombreQualityParLot"].Keys)
+    {
+        <text>
+           graphC.push(['@std', @data["graphNombreQualityParLot"][std], 'red']);
+        </text>
+    }
+
+            @foreach (var std in data["graphNombrePerformanceLayout"].Keys)
+    {
+        <text>
+           graphC.push(['@std', @data["graphNombrePerformanceLayout"][std], 'red']);
+        </text>
+    }
 
 
-    google.charts.setOnLoadCallback(drawBasic);
-    google.charts.setOnLoadCallback(drawGraphQC);
-    google.charts.setOnLoadCallback(drawGraphPL);
-    google.charts.setOnLoadCallback(drawGraphNC);
+                google.charts.load('current', { packages: ['corechart', 'bar'] });
 
-    function drawBasic() {
 
-        var newArray = [];
+                google.charts.setOnLoadCallback(drawBasic);
+                google.charts.setOnLoadCallback(drawGraphQC);
+                google.charts.setOnLoadCallback(drawGraphPL);
+                google.charts.setOnLoadCallback(drawGraphNC);
 
-        var countT = graphC.length;
-        newArray[0] = ["lot", "Quality", { role: 'style' }];
+                function drawBasic() {
 
-        for (j = 0; j <= (countT - 1) ; j++) {
-            newArray[(j + 1)] = graphC[j];
-        }
-        var data = google.visualization.arrayToDataTable(newArray);
+                    var newArray = [];
 
-        var options = {
+                    var countT = graphC.length;
+                    newArray[0] = ["lot", "Quality", { role: 'style' }];
+
+                    for (j = 0; j <= (countT - 1) ; j++) {
+                        newArray[(j + 1)] = graphC[j];
+                    }
+                    var data = google.visualization.arrayToDataTable(newArray);
+
+                    var options = {
             vAxis: {
-                ticks: [
+                    ticks: [
                     { v: 10, f: 'Low' },
                     { v: 20, f: "Medium" },
                     { v: 30, f: "Hight" }
@@ -128,29 +130,29 @@
 
             },
             hAxis: {
-                title: 'Numéro de lot',
+                    title: 'Numéro de lot',
             }, legend: { position: "none" },
         };
 
-        var chart = new google.visualization.ColumnChart(
-          document.getElementById('chart_div'));
+                var chart = new google.visualization.ColumnChart(
+                  document.getElementById('chart_div'));
 
-        chart.draw(data, options);
-    }
+                chart.draw(data, options);
+            }
 
-    function drawGraphQC() {
+            function drawGraphQC() {
 
-        var newArray = [];
+                var newArray = [];
 
-        var countT = graphQC.length;
-        newArray[0] = ['Component', 'Quality', { role: 'style' }];
+                var countT = graphQC.length;
+                newArray[0] = ['Component', 'Quality', { role: 'style' }];
 
-        for (j = 0; j <= (countT - 1) ; j++) {
-            newArray[(j + 1)] = graphQC[j];
-        }
-        var data = google.visualization.arrayToDataTable(newArray);
+                for (j = 0; j <= (countT - 1) ; j++) {
+                    newArray[(j + 1)] = graphQC[j];
+                }
+                var data = google.visualization.arrayToDataTable(newArray);
 
-        var options = {
+                var options = {
             vAxis: {
                 ticks: [
                     { v: 10, f: 'Low' },
@@ -164,28 +166,28 @@
             }, legend: { position: "none" },
         };
 
-        var chart = new google.visualization.ColumnChart(
-          document.getElementById('chart_div_qc'));
+            var chart = new google.visualization.ColumnChart(
+              document.getElementById('chart_div_qc'));
 
-        chart.draw(data, options);
+            chart.draw(data, options);
     }
 
-    function drawGraphPL() {
+        function drawGraphPL() {
 
-        var newArray = [];
+            var newArray = [];
 
-        var countT = graphPL.length;
-        newArray[0] = ["Layout", "Performance", { role: 'style' }];
+            var countT = graphPL.length;
+            newArray[0] = ["Layout", "Performance", { role: 'style' }];
 
-        for (j = 0; j <= (countT - 1) ; j++) {
-            newArray[(j + 1)] = graphPL[j];
-        }
+            for (j = 0; j <= (countT - 1) ; j++) {
+                newArray[(j + 1)] = graphPL[j];
+            }
 
-        var data = google.visualization.arrayToDataTable(newArray);
+            var data = google.visualization.arrayToDataTable(newArray);
 
-        var options = {
+            var options = {
             vAxis: {
-                ticks: [
+            ticks: [
                     { v: 10, f: 'Low' },
                     { v: 20, f: "Medium" },
                     { v: 30, f: "Hight" }
@@ -193,7 +195,7 @@
                 title: 'Performance'
             },
             hAxis: {
-                title: 'Layout',
+            title: 'Layout',
             }, legend: { position: "none" },
         };
 
@@ -218,16 +220,16 @@
         var options = {
             vAxis: {
 
-                title: 'NB lot'
+        title: 'NB lot'
             },
             hAxis: {
-                title: 'Color',
+        title: 'Color',
             }, legend: { position: "none" },
         };
 
-        var chart = new google.visualization.ColumnChart(
-          document.getElementById('chart_div_nc'));
+    var chart = new google.visualization.ColumnChart(
+      document.getElementById('chart_div_nc'));
 
-        chart.draw(data, options);
+    chart.draw(data, options);
     }
 </script>
