@@ -4,7 +4,7 @@
             <div class="mdl-card__supporting-text">
                 @if (@ViewData["fromDate"] != null)
                 {
-                <h4>Rechercher par date du @ViewData["fromDate"] au @ViewData["toDate"] </h4>
+                <h4>Rechercher par date du @Convert.ToDateTime(ViewData["fromDate"]).ToString("dd/MM/yyyy"); au @Convert.ToDateTime(ViewData["toDate"]).ToString("dd/MM/yyyy"); </h4>
                 }
                 else
                 {
