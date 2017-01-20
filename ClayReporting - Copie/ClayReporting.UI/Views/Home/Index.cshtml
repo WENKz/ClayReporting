@@ -1,46 +1,47 @@
 ﻿
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table" id="myTable">
-    <tr>
-        <thead>
-<th>lot</th>
-        <th>layout</th>
-        <th>performance</th>
-        <th>quality</th>
-        <th>couleur</th>
-
-        </thead>
-
-</tr>
-@foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
-{
-    <tbody>
+    <thead>
         <tr>
-            <td>
-                @std.Value["lot"]
-            </td>
-            <td>
-                @std.Value["layout"]
-            </td>
-            <td>
-                @std.Value["performance"]
-            </td>
-            <td>
-                @std.Value["quality"]
-            </td>
-            <td>
-                @std.Value["couleur"]
-            </td>
-
+            <th>lot</th>
+            <th>layout</th>
+            <th>performance</th>
+            <th>quality</th>
+            <th>couleur</th>         
         </tr>
+    </thead>
+    <tbody>
+        @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
+        {
+
+            <tr>
+                <td>
+                    @std.Value["lot"]
+                </td>
+                <td>
+                    @std.Value["layout"]
+                </td>
+                <td>
+                    @std.Value["performance"]
+                </td>
+                <td>
+                    @std.Value["quality"]
+                </td>
+                <td>
+                    @std.Value["couleur"]
+                </td>
+
+            </tr>
+
+        }
     </tbody>
-}
 </table>
 
 <script>
     $(document).ready(function () {
-        $('#myTable').DataTable();
+        $('#myTable').DataTable({
+            "searching": true,
+            "ordering": true,
+            "pagingType": "full_numbers"
+        });
     });
 </script>
