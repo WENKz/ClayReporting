@@ -84,17 +84,17 @@
     </text>
     }
 
-        @foreach (var std in data["graphNombreQualiteParLot"].Keys)
+        @foreach (var std in data["graphQualiteParLot"].Keys)
     {
         <text>
-           graphC.push(['@std', @data["graphNombreQualiteParLot"][std], 'red']);
+           graphC.push(['@std', @data["graphQualiteParLot"][std], 'red']);
         </text>
     }
 
-            @foreach (var std in data["graphNombrePerformanceLayout"].Keys)
+            @foreach (var std in data["graphPerformanceLayout"].Keys)
     {
         <text>
-           graphC.push(['@std', @data["graphNombrePerformanceLayout"][std], 'red']);
+           graphC.push(['@std', @data["graphPerformanceLayout"][std], 'red']);
         </text>
     }
 
