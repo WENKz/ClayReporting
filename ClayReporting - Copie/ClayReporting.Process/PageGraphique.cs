@@ -10,18 +10,7 @@ namespace ClayReporting.Process
 {
     public class PageGraphique
     {
-        public Dictionary<string, dynamic> GenererDonneesgraphs(DateTime debutPeriode, DateTime finPeriode)
-        {
-            Dictionary<int, Dictionary<string, dynamic>> donnees = ObtenirDonneesGraphique(debutPeriode, finPeriode);
-            Dictionary<string, dynamic> donneesGraphs = new Dictionary<string, dynamic>();
-            foreach (int r in donnees.Keys)
-            {
-
-            }
-            return donneesGraphs;
-        }
-
-        public Dictionary<int, Dictionary<string, dynamic>> ObtenirDonneesGraphique(DateTime debutPeriode, DateTime finPeriode)
+        public Dictionary<int, Dictionary<string, dynamic>> ObtenirDonneesGraphique(DateTime debutPeriode, DateTime finPeriode) 
         {
             Dictionary<string, int> valeurs = new Dictionary<string, int>();
             valeurs.Add("low", 10);
@@ -33,12 +22,12 @@ namespace ClayReporting.Process
             Dictionary<int, Dictionary<string, dynamic>> donnees = new Dictionary<int, Dictionary<string, dynamic>>();
 
             List<rapport> rapports = new ManageurDA().Rapports.getAllRapportInPeriod(debutPeriode, finPeriode);
-
+            
             int i = 0;
-            rapports.ForEach(delegate (rapport rapportExp)
+            rapports.ForEach(delegate(rapport rapportExp)
             {
-
-                rapportExp.data.ForEach(delegate (data data)
+                
+                rapportExp.data.ForEach(delegate(data data) 
                 {
                     Dictionary<string, dynamic> donnee = new Dictionary<string, dynamic>();
                     donnee.Add("quality", valeurs[data.etat.libelle.ToLower()]);
@@ -54,32 +43,6 @@ namespace ClayReporting.Process
             });
             return donnees;
         }
-        public Dictionary<string, int> GennerDonneesGraphQualityParComposant(Dictionary<int, Dictionary<string, dynamic>> test)
-        {
-            Dictionary<string, int[]> t = new Dictionary<string, int[]>();
-            foreach (int r in test.Keys)
-            {
-                if (!t.Keys.Any(k => k.Equals(test[r]["composant"])))
-                {
-                    t.Add(test[r]["composant"], new int[] { test[r]["quality"], 1 });
-                }
-                else
-                {
-                    t[test[r]["composant"]][0] += test[r]["quality"];
-                    t[test[r]["composant"]][1] += 1;
-                }
-
-            }
-            Dictionary<string, int> result = new Dictionary<string, int>();
-            foreach (string k in t.Keys)
-            {
-                int moy = t[k][0] / t[k][1];
-                result.Add(k, moy);
-            }
-
-            return result;
-        }
-        
 
         public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode) 
         {
