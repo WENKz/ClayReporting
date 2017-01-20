@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Globalization;
+using System.IO;
+using System.Text;
 
 namespace ClayReporting.UI.Controllers
 {
@@ -86,13 +88,23 @@ namespace ClayReporting.UI.Controllers
 
         public ActionResult Export()
         {
-            
-            RapportMois rapportMois = new RapportMois(new DateTime(),new DateTime());
+            Response.Clear();
+            RapportMois rapportMois = new RapportMois(new DateTime(), new DateTime());
+            Response.AddHeader("content-disposition", "attachment; filename="+string.Format("rapprot -{ 0}-{ 1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
+            Response.ContentType = "text/xml";
+            using (StreamWriter sw = new StreamWriter(Response.OutputStream, Encoding.UTF8))
+            {
+                ManipulateurXML xml = new ManipulateurXML();
+                string contenu = xml.Serialize(rapportMois, typeof(RapportMois));
+                sw.Write(contenu);
+            }
+            Response.End();
+            /*RapportMois rapportMois = new RapportMois(new DateTime(),new DateTime());
             if (rapportMois.Rapports.Count > 0)
             {
                 ManipulateurXML xml = new ManipulateurXML();
                 xml.Ecrire(rapportMois, typeof(RapportMois), string.Format("rapprot-{0}-{1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
-            }
+            }*/
             return View();
         }
     }
