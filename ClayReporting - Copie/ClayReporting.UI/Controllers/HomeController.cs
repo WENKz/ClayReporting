@@ -14,7 +14,24 @@ namespace ClayReporting.UI.Controllers
     {
         public ActionResult Index()
         {
-          
+            var nvc = Request.Form;
+            DateTime date = new DateTime();
+            PageGraphique pg = new PageGraphique();
+
+            if (!string.IsNullOrEmpty(nvc["fromDate"]) && !string.IsNullOrEmpty(nvc["toDate"]))
+            {
+                DateTime fromDate = Convert.ToDateTime(nvc["fromDate"]);
+                DateTime toDate = Convert.ToDateTime(nvc["toDate"]);
+
+                Dictionary<int, Dictionary<string, dynamic>> données = pg.ObtenirDonneesGraphique(fromDate, toDate);
+                ViewData["fromDate"] = fromDate;
+                ViewData["toDate"] = toDate;
+                ViewData["list"] = données;
+                return View();
+            }
+
+            Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
+            ViewData["list"] = test;
 
             return View();
         }

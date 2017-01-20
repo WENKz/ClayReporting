@@ -1,19 +1,43 @@
-﻿@model IEnumerable<ClayReporting.DataAcces.Modeles.DataExport>
+﻿
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="myTable">
+    <tr>
+        <th>lot</th>
+        <th>layout</th>
+        <th>performance</th>
+        <th>quality</th>
+        <th>couleur</th>
 
-@{
-    Layout = null;
+
+
+</tr>
+@foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
+{
+    <tr>
+        <td>
+            @std.Value["lot"]
+        </td>
+        <td>
+            @std.Value["layout"]
+        </td>
+        <td>
+            @std.Value["performance"]
+        </td>
+        <td>
+            @std.Value["quality"]
+        </td>
+        <td>
+            @std.Value["couleur"]
+        </td>
+        
+    </tr>
 }
+</table>
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-   
-    
-
-</body>
-</html>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
