@@ -1,47 +1,87 @@
-﻿
-<table class="table" id="myTable">
-    <thead>
-        <tr>
-            <th>lot</th>
-            <th>layout</th>
-            <th>performance</th>
-            <th>quality</th>
-            <th>couleur</th>         
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
-        {
+﻿<div class="mdl-layout__tab-panel is-active" id="overview">
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card__supporting-text">
+                @if (@ViewData["fromDate"] != null)
+                {
+                <h4>Rechercher par date du @Convert.ToDateTime(ViewData["fromDate"]).ToString("dd/MM/yyyy"); au @Convert.ToDateTime(ViewData["toDate"]).ToString("dd/MM/yyyy"); </h4>
+                }
+                else
+                {
+                    <h4>Rechercher par date </h4>
+                }
+                <div style="text-align:center">
+                    <form method="POST">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="" for="from">From:</label>
 
-            <tr>
-                <td>
-                    @std.Value["lot"]
-                </td>
-                <td>
-                    @std.Value["layout"]
-                </td>
-                <td>
-                    @std.Value["performance"]
-                </td>
-                <td>
-                    @std.Value["quality"]
-                </td>
-                <td>
-                    @std.Value["couleur"]
-                </td>
+                            <input class="mdl-textfield__input" name="fromDate" value="@ViewData["fromDate"]" type="date" id="from">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label class="" for="to">To:</label>
 
-            </tr>
+                            <input class="mdl-textfield__input" name="toDate" placeholder="@ViewData["toDate"]" type="date" id="to">
+                        </div>
 
-        }
-    </tbody>
-</table>
+                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" type="submit" value="submit"><i class="material-icons">search</i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable({
-            "searching": true,
-            "ordering": true,
-            "pagingType": "full_numbers"
-        });
-    });
-</script>
+    </section>
+
+</div>
+<div class="mdl-layout__tab-panel is-active" id="overview">
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-card__supporting-text">
+                <table class="table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>lot</th>
+                            <th>layout</th>
+                            <th>performance</th>
+                            <th>quality</th>
+                            <th>couleur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
+                        {
+
+                            <tr>
+                                <td>
+                                    @std.Value["lot"]
+                                </td>
+                                <td>
+                                    @std.Value["layout"]
+                                </td>
+                                <td>
+                                    @std.Value["performance"]
+                                </td>
+                                <td>
+                                    @std.Value["quality"]
+                                </td>
+                                <td>
+                                    @std.Value["couleur"]
+                                </td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+                </div>
+            </div>
+</section>
+</div>
+                <script>
+                    $(document).ready(function () {
+                        $('#myTable').DataTable({
+                            "searching": true,
+                            "ordering": true,
+                            "pagingType": "full_numbers"
+                        });
+                    });
+                </script>
