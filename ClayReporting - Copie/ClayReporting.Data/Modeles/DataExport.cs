@@ -125,11 +125,5 @@ namespace ClayReporting.DataAcces.Modeles
                 etat1 = new etat() { libelle = value };
             }
         }
-
-        
-
-        
-
-        
     }
 }

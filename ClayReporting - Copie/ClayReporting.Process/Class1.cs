@@ -40,9 +40,10 @@ namespace ClayReporting.Process
 
             xml.Ecrire(rm, typeof(RapportMois), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "rm.xml"));*/
             rapport r = xml.Lire(typeof(rapport), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xmlType.xml"));
-            Context.rapport.Add(r);
-            Context.SaveChanges();
+            //Context.rapport.Add(r);
+            //Context.SaveChanges();
             //rapport r = xml.Lire(typeof(rapport), Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.xml"));
+            int i = 0;
         }
     }
 }

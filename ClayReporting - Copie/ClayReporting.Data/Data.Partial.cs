@@ -104,7 +104,7 @@ namespace ClayReporting.DataAcces
 
             set
             {
-
+                layout = value;
             }
         }
 
