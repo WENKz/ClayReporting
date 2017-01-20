@@ -80,7 +80,7 @@
         @foreach (var std in data["graphNombreLotParColor"].Keys)
     {
         <text>
-           graphC.push(['@std', @data["graphNombreLotParColor"][std], 'red']);
+           graphNC.push(['@std', @data["graphNombreLotParColor"][std], 'red']);
     </text>
     }
 
@@ -94,7 +94,7 @@
             @foreach (var std in data["graphPerformanceLayout"].Keys)
     {
         <text>
-           graphC.push(['@std', @data["graphPerformanceLayout"][std], 'red']);
+           graphPL.push(['@std', @data["graphPerformanceLayout"][std], 'red']);
         </text>
     }
 
