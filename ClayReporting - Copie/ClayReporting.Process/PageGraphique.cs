@@ -55,10 +55,10 @@ namespace ClayReporting.Process
             int i = 0;
             rapports.ForEach(delegate (rapport rapportExp)
             {
-
+                Dictionary<string, dynamic> donnee = new Dictionary<string, dynamic>();
+                donnee.Add("date", rapportExp.DateJour);
                 rapportExp.data.ForEach(delegate (data data)
                 {
-                    Dictionary<string, dynamic> donnee = new Dictionary<string, dynamic>();
                     donnee.Add("quality", valeurs[data.etat.libelle.ToLower()]);
                     donnee.Add("performance", valeurs[data.etat1.libelle.ToLower()]);
                     donnee.Add("couleur", data.couleur.libelle);
@@ -66,7 +66,7 @@ namespace ClayReporting.Process
                     donnee.Add("layout", data.layout);
                     donnee.Add("lot", data.lot);
 
-                    donnees.Add(i, donnee);
+                    donnees.Add(i, new Dictionary<string, dynamic>(donnee));
                     i++;
                 });
             });
