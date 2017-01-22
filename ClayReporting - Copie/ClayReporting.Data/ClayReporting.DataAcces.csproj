@@ -71,6 +71,9 @@
     <Compile Include="couleur.cs">
       <DependentUpon>ClayReporting.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAS\DAComposant.cs" />
+    <Compile Include="DAS\DACouleur.cs" />
+    <Compile Include="DAS\DAEtat.cs" />
     <Compile Include="DAS\DARapport.cs" />
     <Compile Include="data.cs">
       <DependentUpon>ClayReporting.tt</DependentUpon>

@@ -19,14 +19,17 @@ namespace ClayReporting.DataAcces.DAS
         public List<rapport> getAllRapportInPeriod(DateTime start, DateTime end)
         {
             List<rapport> rapports =  Context.rapport.Where(r => r.dateTime.Value >= start && r.dateTime.Value <= end).ToList();
+            DAEtat daEtat = new DAEtat(Context);
+            DACouleur daCouleur = new DACouleur(Context);
+            DAComposant daComposant = new DAComposant(Context);
             rapports.ForEach(delegate(rapport rap) 
             {
                 rap.data.ForEach(delegate (data data) 
                 {
-                    data.etat = Context.etat.FirstOrDefault(e => e.id == data.id_etat);
-                    data.etat1 = Context.etat.FirstOrDefault(e => e.id == data.id_etat_1);
-                    data.composant = Context.composant.FirstOrDefault(c => c.id == data.id_composant);
-                    data.couleur = Context.couleur.FirstOrDefault(c => c.id == data.id_couleur);
+                    data.etat = daEtat.ObtenirEtatParId(data.id_etat.Value);
+                    data.etat1 = daEtat.ObtenirEtatParId(data.id_etat_1.Value);
+                    data.composant = daComposant.ObtenirComposantParId(data.id_composant.Value);
+                    data.couleur = daCouleur.ObtenirCouleurParId(data.id_couleur.Value);
                 });
             });
             return rapports; 
