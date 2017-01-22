@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClayReporting.DataAcces.DAS
 {
-    class DAEtat
+    public class DAEtat
     {
         private clayreportingEntities Context;
 

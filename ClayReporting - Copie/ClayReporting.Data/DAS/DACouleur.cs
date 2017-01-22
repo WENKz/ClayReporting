@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClayReporting.DataAcces.DAS
 {
-    class DACouleur
+    public class DACouleur
     {
         private clayreportingEntities Context;
 

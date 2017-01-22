@@ -11,12 +11,16 @@ namespace ClayReporting.DataAcces
     public class ManageurDA
     {
         public DARapport Rapports { get; set; }
-
+        public DAEtat Etats { get; set; }
+        public DAComposant Composants { get; set; }
+        public DACouleur Couleurs { get; set; }
         public ManageurDA()
         {
             clayreportingEntities context = new clayreportingEntities();
             Rapports = new DARapport(context);
-
+            Etats = new DAEtat(context);
+            Couleurs = new DACouleur(context);
+            Composants = new DAComposant(context);
         }
     }
 }

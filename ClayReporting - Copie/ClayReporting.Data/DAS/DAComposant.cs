@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClayReporting.DataAcces.DAS
 {
-    class DAComposant
+    public class DAComposant
     {
         private clayreportingEntities Context;
 
