@@ -89,7 +89,7 @@ namespace ClayReporting.Process
             return donneesExistantes;
         }
 
-        public Dictionary<string, int> GenererGraphNombreLotParColor(Dictionary<string, dynamic> donneeACalculee, Dictionary<string, int> donneesExistantes)
+        private Dictionary<string, int> GenererGraphNombreLotParColor(Dictionary<string, dynamic> donneeACalculee, Dictionary<string, int> donneesExistantes)
         {
             if (!donneesExistantes.Keys.Any(k => k.Equals(donneeACalculee["couleur"])))
             {
@@ -128,10 +128,10 @@ namespace ClayReporting.Process
 
             return result;
         }
-        public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode) 
+        /*public List<RapportExport> ObtenirRapportExportDeLaPeriode(DateTime debutPeriode, DateTime finPeriode) 
         {
 
             
-        }
+        }*/
     }
 }

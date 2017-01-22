@@ -88,23 +88,48 @@ namespace ClayReporting.UI.Controllers
 
         public ActionResult Export()
         {
-            Response.Clear();
-            RapportMois rapportMois = new RapportMois(new DateTime(), new DateTime());
-            Response.AddHeader("content-disposition", "attachment; filename="+string.Format("rapprot -{ 0}-{ 1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
-            Response.ContentType = "text/xml";
-            using (StreamWriter sw = new StreamWriter(Response.OutputStream, Encoding.UTF8))
+            var nvc = Request.Form;
+
+            if (!string.IsNullOrEmpty(nvc["fromDateExport"]) && !string.IsNullOrEmpty(nvc["toDateExport"]))
             {
-                ManipulateurXML xml = new ManipulateurXML();
-                string contenu = xml.Serialize(rapportMois, typeof(RapportMois));
-                sw.Write(contenu);
+                DateTime fromDate = Convert.ToDateTime(nvc["fromDateExport"]);
+                DateTime toDate = Convert.ToDateTime(nvc["toDateExport"]);
+                if (fromDate <= toDate)
+                {
+                    RapportMois rapportMois = new RapportMois(fromDate, toDate);
+                    Response.AddHeader("content-disposition", "attachment; filename=" + string.Format("rapprot-{0}-{1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
+                    Response.ContentType = "text/xml";
+                    using (StreamWriter sw = new StreamWriter(Response.OutputStream, Encoding.UTF8))
+                    {
+                        ManipulateurXML xml = new ManipulateurXML();
+                        string contenu = xml.Serialize(rapportMois, typeof(RapportMois));
+                        sw.Write(contenu);
+                    }
+                    //Response.End();
+
+
+                    /*RapportMois rapportMois = new RapportMois(new DateTime(),new DateTime());
+                    if (rapportMois.Rapports.Count > 0)
+                    {
+                        ManipulateurXML xml = new ManipulateurXML();
+                        xml.Ecrire(rapportMois, typeof(RapportMois), string.Format("rapprot-{0}-{1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
+                    }*/
+                }
+                else
+                {
+                    ViewData["messageError"] = "La periode selectionné est incorrecte";
+                }
+                
             }
-            Response.End();
-            /*RapportMois rapportMois = new RapportMois(new DateTime(),new DateTime());
-            if (rapportMois.Rapports.Count > 0)
+            string view = "/Home/Index";
+            if (!nvc["currentView"].Equals("/") && !nvc["currentView"].Equals("/Home/Index"))
             {
-                ManipulateurXML xml = new ManipulateurXML();
-                xml.Ecrire(rapportMois, typeof(RapportMois), string.Format("rapprot-{0}-{1}.xml", rapportMois.startDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture), rapportMois.endDayMonth.ToString("dd_MM_yyyy", CultureInfo.InvariantCulture)));
-            }*/
+                view = nvc["currentView"];
+            }
+
+            
+            ViewData["view"] = view;
+            
             return View();
         }
     }

@@ -79,12 +79,15 @@
                 <a href="/Home/Index" id="-Home-Index" class="mdl-layout__tab">Tableau</a>
                 <a href="/Home/Graph"id="-Home-Graph" class="mdl-layout__tab">Graphique</a>
               
-            
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
-                    <i class="material-icons">file_download</i>
-                    <span class="visuallyhidden">export</span>
-                </button>
-           
+                <form method="POST" action="/Home/Export">
+                    <input type="hidden" value="" id="fromDateExport" name="fromDateExport" />
+                    <input type="hidden" value="" id="toDateExport" name="toDateExport" />
+                    <input type="hidden" value="" id="currentView" name="currentView" />
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+                        <i class="material-icons">file_download</i>
+                        <span class="visuallyhidden">export</span>
+                    </button>
+                </form>
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="printbutton" style=" right: 108px;display:none;position: absolute;  top: 36px; z-index: 999;"onclick="$('#print').print()">
                     <i class="material-icons">print</i>
                     <span class="visuallyhidden">imprimer</span>
@@ -121,6 +124,13 @@
         if (window.location.pathname == "/Home/Graph") {
             $("#printbutton").css('display', "block");
         }
+        $("#from").on("change", function () {
+            $("#fromDateExport").val($(this).val());
+        });
+        $("#to").on("change", function () {
+            $("#toDateExport").val($(this).val());
+        });
+        $("#currentView").val(window.location.pathname);
     </script>
 </bodyclass="mdl-demo>
 </html>
