@@ -23,7 +23,7 @@ namespace ClayReporting.UI.Controllers
                 DateTime toDate = Convert.ToDateTime(nvc["toDate"]);
                 if (fromDate <= toDate)
                 {
-                    Dictionary<int, Dictionary<string, dynamic>> données = pg.ObtenirDonneesGraphique(fromDate, toDate);
+                    Dictionary<int, Dictionary<string, dynamic>> données = pg.ObtenirDonneesTableau(fromDate, toDate);
                     ViewData["fromDate"] = fromDate;
                     ViewData["toDate"] = toDate;
                     ViewData["list"] = données;
