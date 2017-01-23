@@ -79,9 +79,9 @@
                 <a href="/Home/Index" id="-Home-Index" class="mdl-layout__tab">Tableau</a>
                 <a href="/Home/Graph"id="-Home-Graph" class="mdl-layout__tab">Graphique</a>
               
-                <form method="POST" action="/Home/Export">
-                    <input type="hidden" value="@ViewData["fromDate"]" id="fromDateExport" name="fromDateExport" />
-                    <input type="hidden" value="@ViewData["toDate"]" id="toDateExport" name="toDateExport" />
+                <form method="POST" action="/Home/Export" onSubmit="return valider()">
+                    <input type="hidden" value="@ViewData["fromDate"]" id="fromDateExport" name="fromDateExport" required />
+                    <input type="hidden" value="@ViewData["toDate"]" id="toDateExport" name="toDateExport" required />
                     <input type="hidden" value="" id="currentView" name="currentView" />
                     <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
                         <i class="material-icons">file_download</i>
@@ -131,6 +131,15 @@
             $("#toDateExport").val($(this).val());
         });
         $("#currentView").val(window.location.pathname);
+
+        function valider(){
+            // ici tes traitements qui vont bien
+            if ($("#toDateExport").val() != "" && $("#toDateExport").val() != "")
+                return true;
+           else
+                alert("Renseignez une date d'export");
+                return false;
+            }
     </script>
 </bodyclass="mdl-demo>
 </html>
