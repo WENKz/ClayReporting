@@ -15,7 +15,7 @@ namespace ClayReporting.UI.Controllers
         {
             var nvc = Request.Form;
             DateTime date = new DateTime();
-            PageGraphique pg = new PageGraphique();
+            ProcessGlobaux pg = new ProcessGlobaux();
 
             if (!string.IsNullOrEmpty(nvc["fromDate"]) && !string.IsNullOrEmpty(nvc["toDate"]) )
             {

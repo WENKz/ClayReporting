@@ -10,6 +10,7 @@ namespace ClayReporting.DataAcces
 {
     public class ManageurDA
     {
+        private clayreportingEntities Context = new clayreportingEntities();
         public DARapport Rapports { get; set; }
         public DAEtat Etats { get; set; }
         public DAComposant Composants { get; set; }
@@ -21,6 +22,10 @@ namespace ClayReporting.DataAcces
             Etats = new DAEtat(context);
             Couleurs = new DACouleur(context);
             Composants = new DAComposant(context);
+        }
+        public void SauvegarderChangement()
+        {
+            Context.SaveChanges();
         }
     }
 }

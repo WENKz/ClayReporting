@@ -34,5 +34,10 @@ namespace ClayReporting.DataAcces.DAS
             });
             return rapports; 
         }
+
+        public void AjouterRapport(rapport rapport)
+        {
+            Context.rapport.Add(rapport);
+        }
     }
 }

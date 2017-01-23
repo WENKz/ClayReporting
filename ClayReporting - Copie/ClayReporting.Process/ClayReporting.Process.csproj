@@ -51,8 +51,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ManipulateurXML.cs" />
     <Compile Include="PageGraphique.cs" />
+    <Compile Include="ProcessGlobaux.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RapportMois.cs" />
+    <Compile Include="ThreadImport.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClayReporting.Data\ClayReporting.DataAcces.csproj">
