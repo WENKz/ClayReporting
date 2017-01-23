@@ -80,34 +80,35 @@
     var moyQC = [];
     var listComposant = [];
     var MoyenC = [];
+    var color = ["red","green","blue","yellow","gray","orange","red","brown","golden","violet","silver"]
     @{
         var data = ViewData["list"] as IDictionary<string, dynamic>;
     }
     @foreach (var std in data["graphQualiteParComposant"].Keys)
     {
  <text>
-    graphQC.push(['@std', @data["graphQualiteParComposant"][std], 'red']);
+    graphQC.push(['@std', @data["graphQualiteParComposant"][std], color[Math.floor((Math.random() * 10) + 1)]]);
     </text>
                 }
 
     @foreach (var std in data["graphNombreLotParColor"].Keys)
     {
         <text>
-    graphNC.push(['@std', @data["graphNombreLotParColor"][std], 'red']);
+    graphNC.push(['@std', @data["graphNombreLotParColor"][std], '@std']);
     </text>
     }
 
     @foreach (var std in data["graphQualiteParLot"].Keys)
     {
         <text>
-    graphC.push(['@std', @data["graphQualiteParLot"][std], 'red']);
+    graphC.push(['@std', @data["graphQualiteParLot"][std], color[Math.floor((Math.random() * 10) + 1)]]);
     </text>
     }
 
     @foreach (var std in data["graphPerformanceLayout"].Keys)
     {
         <text>
-    graphPL.push(['@std', @data["graphPerformanceLayout"][std], 'red']);
+    graphPL.push(['@std', @data["graphPerformanceLayout"][std], color[Math.floor((Math.random() * 10) + 1)]]);
     </text>
     }
 
