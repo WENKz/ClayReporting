@@ -35,7 +35,7 @@ namespace ClayReporting.UI.Controllers
                 }
             }
 
-            Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesGraphique(new DateTime(), new DateTime());
+            Dictionary<int, Dictionary<string, dynamic>> test = pg.ObtenirDonneesTableau(new DateTime(), new DateTime());
             ViewData["list"] = test;
 
             return View();
