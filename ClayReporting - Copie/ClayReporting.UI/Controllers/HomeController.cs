@@ -10,6 +10,7 @@ namespace ClayReporting.UI.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             var nvc = Request.Form;
@@ -105,7 +106,7 @@ namespace ClayReporting.UI.Controllers
                         string contenu = xml.Serialize(rapportMois, typeof(RapportMois));
                         sw.Write(contenu);
                     }
-                    //Response.End();
+                    Response.End();
 
 
                     /*RapportMois rapportMois = new RapportMois(new DateTime(),new DateTime());
