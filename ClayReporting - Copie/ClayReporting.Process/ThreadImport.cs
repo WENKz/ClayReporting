@@ -21,7 +21,10 @@ namespace ClayReporting.Process
                     ManageurDA mda = new ManageurDA();
                     /*DirectoryInfo d = new DirectoryInfo(cheminDossier);
                     FileSystemInfo[] f =  d.GetFileSystemInfos();*/
-                    
+                    if(!Directory.Exists(cheminDossier))
+                    {
+                        Directory.CreateDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Imports"));
+                    }
                     string[] listeFichier = Directory.GetFiles(cheminDossier, "*.xml");
                     if (listeFichier.Count() > 0)
                     {
