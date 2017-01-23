@@ -10,8 +10,8 @@ namespace ClayReporting.UI
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            ThreadImport obetImportation = new ThreadImport();
-            Thread workerThread = new Thread(obetImportation.Import);
+            ThreadImport objetImportation = new ThreadImport();
+            Thread workerThread = new Thread(objetImportation.Import);
 
             workerThread.Start();
         }
