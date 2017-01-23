@@ -19,6 +19,9 @@ namespace ClayReporting.Process
                     string cheminDossier = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Imports");
                     ManipulateurXML xml = new ManipulateurXML();
                     ManageurDA mda = new ManageurDA();
+                    /*DirectoryInfo d = new DirectoryInfo(cheminDossier);
+                    FileSystemInfo[] f =  d.GetFileSystemInfos();*/
+                    
                     string[] listeFichier = Directory.GetFiles(cheminDossier, "*.xml");
                     if (listeFichier.Count() > 0)
                     {

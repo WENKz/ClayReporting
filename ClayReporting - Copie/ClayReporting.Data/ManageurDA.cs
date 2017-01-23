@@ -17,11 +17,10 @@ namespace ClayReporting.DataAcces
         public DACouleur Couleurs { get; set; }
         public ManageurDA()
         {
-            clayreportingEntities context = new clayreportingEntities();
-            Rapports = new DARapport(context);
-            Etats = new DAEtat(context);
-            Couleurs = new DACouleur(context);
-            Composants = new DAComposant(context);
+            Rapports = new DARapport(Context);
+            Etats = new DAEtat(Context);
+            Couleurs = new DACouleur(Context);
+            Composants = new DAComposant(Context);
         }
         public void SauvegarderChangement()
         {
