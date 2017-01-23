@@ -69,7 +69,7 @@
                         @foreach (var std in ViewData["list"] as IDictionary<int, Dictionary<string, dynamic>>)
                         {
 
-                            <tr>
+                            <tr style="@if (std.Value["performance"] == "low" || std.Value["quality"] == "low") { <text> background:rgba(255, 73, 64, 0.43);</text>} ">
                                 <td>
                                     @std.Value["date"]
                                 </td>
