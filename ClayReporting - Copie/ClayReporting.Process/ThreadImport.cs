@@ -28,13 +28,14 @@ namespace ClayReporting.Process
                     string[] listeFichier = Directory.GetFiles(cheminDossier, "*.xml");
                     if (listeFichier.Count() > 0)
                     {
+                        List<string> listeOk = new List<string>();
                         foreach (string nomfichier in listeFichier)
                         {
                             rapport rapport = xml.Lire(typeof(rapport), nomfichier);
                             try
                             {
                                 mda.Rapports.AjouterRapport(rapport);
-                                File.Delete(nomfichier);
+                                listeOk.Add(nomfichier);  
                             }
                             catch (Exception e)
                             {
@@ -42,6 +43,10 @@ namespace ClayReporting.Process
                             }
                         }
                         mda.SauvegarderChangement();
+                        foreach (string nomfichier in listeOk)
+                        {
+                            File.Delete(nomfichier);
+                        }
                     }
                 }
                 else
