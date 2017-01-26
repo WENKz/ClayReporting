@@ -1,21 +1,21 @@
-<datas date="08/02/2017">
-	<data timecode="0" lot="1128899992">
+<datas date="02/03/2017">
+	<data timecode="0" lot="1128899922">
 		<offset>1356</offset>
 		<pressure>75974</pressure>
-		<layout>78923</layout>
-		<component>Yotis10</component>
+		<layout>7923</layout>
+		<component>Truf56</component>
 		<colorbound>purple</colorbound>
 		<quality>medium</quality>
 		<performance>low</performance>
 		<result>0</result>
 	</data>
-	<data timecode="0" lot="1128899991">
+	<data timecode="0" lot="1128899911">
 		<offset>1346</offset>
 		<pressure>75944574</pressure>
-		<layout>789</layout>
-		<component>Yotis10</component>
+		<layout>79</layout>
+		<component>Patos56</component>
 		<colorbound>Brown</colorbound>
-		<quality>low</quality>
+		<quality>medium</quality>
 		<performance>medium</performance>
 		<result>0</result>
 	</data>

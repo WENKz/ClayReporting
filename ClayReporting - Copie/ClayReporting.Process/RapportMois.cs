@@ -73,6 +73,7 @@ namespace ClayReporting.Process
                                    etat = d.etat,
                                    composant = d.composant,
                                    couleur = d.couleur,
+                                   lot = d.lot
                                })
                                .ToList(),
                            dateTime = r.dateTime,
